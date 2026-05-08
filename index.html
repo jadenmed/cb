@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusBite — Coming Soon</title>
+  <meta name="description" content="AI-powered meal planning built around your real dining hall menus. Join the waitlist." />
+
+  <!-- Open Graph (iMessage, WhatsApp, Slack, LinkedIn, Facebook) -->
+  <meta property="og:title" content="CampusBite — Smart eating for campus life." />
+  <meta property="og:description" content="AI-powered meal planning built around your real dining hall menus. Join the waitlist and be the first to know when we launch at your school." />
+  <meta property="og:image" content="preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CampusBite" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CampusBite — Smart eating for campus life." />
+  <meta name="twitter:description" content="AI-powered meal planning built around your real dining hall menus. Join the waitlist." />
+  <meta name="twitter:image" content="preview.png" />
+
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600&display=swap" rel="stylesheet" />
+
+  <!--
+  ═══════════════════════════════════════════════════════
+  FORMSPREE SETUP (2 minutes):
+  1. Go to https://formspree.io and sign up free
+  2. Click "New Form" — enter campusbiteai@gmail.com
+  3. Copy your form ID (e.g. xpzgkdqr)
+  4. Replace YOUR_FORMSPREE_ID in the <form> action below
+  ═══════════════════════════════════════════════════════
+  -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --gray: #888888;
+      --gray-light: #E8E8E8;
+      --border: #E2E2E2;
+      --bg-input: #F7F7F7;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 80px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      margin-bottom: 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .logo-wrap img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    /* Headline */
+    h1 {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 14px;
+      animation: fadeUp 0.5s 0.06s ease both;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--gray);
+      margin-bottom: 40px;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    /* Form */
+    .form-wrap {
+      width: 100%;
+      animation: fadeUp 0.5s 0.14s ease both;
+    }
+
+    .field {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.18s, background 0.18s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input::placeholder { color: #BBBBBB; }
+
+    input:focus {
+      border-color: #BBBBBB;
+      background: var(--white);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 14px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.18s, transform 0.12s;
+      letter-spacing: 0.01em;
+    }
+
+    .submit-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); opacity: 1; }
+    .submit-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .success-state {
+      display: none;
+      text-align: left;
+      padding: 4px 0 8px;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .success-state h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .success-state .success-body {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    /* Link preview card */
+    .preview-card {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: opacity 0.15s;
+    }
+
+    .preview-card:hover { opacity: 0.85; }
+
+    .preview-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-card-meta {
+      padding: 12px 14px;
+      background: var(--white);
+    }
+
+    .preview-card-site {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #BBBBBB;
+      margin-bottom: 3px;
+    }
+
+    .preview-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+
+    .preview-card-desc {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .privacy-note {
+      font-size: 12px;
+      color: #CCCCCC;
+      margin-top: 16px;
+      animation: fadeUp 0.5s 0.18s ease both;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      text-align: center;
+      font-size: 11px;
+      color: #CCCCCC;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <div class="logo-wrap">
+      <img src="logo.png" alt="CampusBite" />
+    </div>
+
+    <h1>Smart eating<br />for campus life.</h1>
+
+    <p class="subtitle">AI meal planning built around your real dining hall menus. Know exactly what to eat, every day.</p>
+
+    <div class="form-wrap">
+
+      <form id="waitlist-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+
+        <input type="hidden" name="_replyto" value="campusbiteai@gmail.com" />
+        <input type="hidden" name="_subject" value="New CampusBite Waitlist Signup" />
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="field">
+          <label for="school">Your school <span style="color:#CCCCCC; font-weight:400;">(optional)</span></label>
+          <input
+            type="text"
+            id="school"
+            name="school"
+            placeholder="e.g. University of Miami"
+            autocomplete="organization"
+          />
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          Join the waitlist →
+        </button>
+
+        <div class="success-state" id="success-state">
+          <h3>You're on the list.</h3>
+          <p class="success-body">Thanks for signing up. We're building something that actually makes campus dining work for you — real menus, real goals, no guesswork. We'll reach out as soon as we launch at your school.</p>
+          <p class="success-body" style="margin-bottom:16px;">In the meantime, share the link with a friend.</p>
+          <a class="preview-card" href="#" id="share-link">
+            <img src="preview.png" alt="CampusBite preview" />
+            <div class="preview-card-meta">
+              <div class="preview-card-site">campusbite.com</div>
+              <div class="preview-card-title">CampusBite — Smart eating for campus life.</div>
+              <div class="preview-card-desc">AI meal planning built around your real dining hall menus.</div>
+            </div>
+          </a>
+        </div>
+
+      </form>
+
+    </div>
+
+    <p class="privacy-note">No spam, ever.</p>
+
+  </div>
+
+  <footer>© 2026 CampusBite</footer>
+
+  <script>
+    const form = document.getElementById('waitlist-form');
+    const btn = document.getElementById('submit-btn');
+    const successState = document.getElementById('success-state');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.querySelectorAll('.field').forEach(f => f.style.display = 'none');
+          btn.style.display = 'none';
+          successState.style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Something went wrong — try again';
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Something went wrong — try again';
+      }
+    });
+  </script>
+
+</body>
+</html>
