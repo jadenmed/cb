@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "-l", "8743", "/Users/jadenmedina/Documents/GitHub/cb"],
+      "port": 8743
+    }
+  ]
+}

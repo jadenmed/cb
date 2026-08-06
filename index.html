@@ -28,6 +28,11 @@
       --accent: #ff7a45;
       --accent-dark: #e35f2b;
       --radius-full: 999px;
+      --card-bg: #f8f8f7;
+      --forest: #16443a;
+      --forest-border: #37957f;
+      --forest-bg: #ebf9f4;
+      --mango-bg: #ffeed9;
     }
 
     * {
@@ -35,7 +40,7 @@
       box-sizing: border-box;
     }
 
-    html, body { height: 100%; }
+    html, body { min-height: 100%; }
 
     body {
       margin: 0;
@@ -281,6 +286,326 @@
       .mockup-slot { order: 1; max-width: 20rem; margin: 8px auto 0; }
       .sub-text { max-width: none; }
     }
+
+    /* Proof section */
+    .proof {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 88px 32px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .proof h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      max-width: 56rem;
+      margin: 0 auto 18px;
+    }
+
+    .proof h2 .accent { color: var(--accent); }
+
+    .proof-sub {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin: 0 0 22px;
+    }
+
+    .proof-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 1200 / 608;
+      margin: 0 auto 88px;
+    }
+
+    .logo-badge {
+      position: absolute;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ebf9f4;
+      border: 1px solid #ccf0e4;
+      border-radius: 10px;
+      box-shadow: 0 16px 32px rgba(23, 24, 26, 0.1);
+      animation: floatBadge 4.5s ease-in-out infinite;
+    }
+
+    .logo-badge img {
+      width: 58%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .badge-fiu       { left: 23.083%; top: 1.475%; width: 11.917%; animation-delay: 0s; }
+    .badge-stanford  { left: 17.167%; top: 37.99%; width: 11.917%; animation-delay: 0.6s; }
+    .badge-minnesota { left: 23.083%; top: 74.5%;  width: 11.917%; animation-delay: 1.2s; }
+    .badge-miami     { left: 64.917%; top: 1.475%; width: 11.889%; animation-delay: 0.3s; }
+    .badge-tamu      { left: 70.861%; top: 37.99%; width: 11.889%; animation-delay: 0.9s; }
+    .badge-nyu       { left: 64.917%; top: 74.5%;  width: 11.889%; animation-delay: 1.5s; }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-badge { animation: none; }
+    }
+
+    .proof-phone {
+      position: absolute;
+      left: 38.33%;
+      top: 0;
+      width: 23.258%;
+      aspect-ratio: 279.1 / 607.4;
+    }
+
+    .proof-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 28px 48px rgba(23, 24, 26, 0.18));
+    }
+
+    @media (max-width: 860px) {
+      .proof { padding-top: 64px; }
+      .proof-stage {
+        aspect-ratio: auto;
+        margin-bottom: 56px;
+        display: flex;
+        justify-content: center;
+      }
+      .badge-fiu, .badge-stanford, .badge-minnesota,
+      .badge-miami, .badge-tamu, .badge-nyu { display: none; }
+      .proof-phone {
+        position: static;
+        width: 190px;
+        aspect-ratio: 279.1 / 607.4;
+      }
+    }
+
+    /* Features section */
+    .features {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 96px 32px 120px;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -1.68px;
+      line-height: 1.1;
+      max-width: 44rem;
+      margin: 0 auto 56px;
+    }
+
+    .features h2 .accent { color: var(--accent); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 28px 20px 24px;
+      min-height: 289px;
+      box-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px rgba(23, 24, 26, 0.05);
+    }
+
+    .feature-card h3 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -1.68px;
+      margin: 0 0 8px;
+    }
+
+    .feature-card .feature-sub {
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* Card 1 — meal suggestions */
+    .meal-shuffle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: auto 0 14px;
+      padding-top: 24px;
+    }
+
+    .meal-shuffle span {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .shuffle-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    .meal-list {
+      display: flex;
+      gap: 12px;
+    }
+
+    .meal-item {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+    }
+
+    .meal-item.is-selected {
+      background: var(--forest-bg);
+      border-color: var(--forest-border);
+    }
+
+    .meal-thumb {
+      width: 100%;
+      height: 64px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .meal-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meal-name {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meal-cal {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    /* Card 2 — nutrition breakdown */
+    .nutrition-stats {
+      display: flex;
+      gap: 20px;
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    .stat { flex: 1; }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      margin: 0 0 10px;
+    }
+
+    .stat-bar {
+      height: 4px;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      background: var(--ink);
+    }
+
+    /* Card 3 — calorie ring */
+    .calorie-ring {
+      position: relative;
+      width: 216px;
+      height: 216px;
+      margin: auto;
+    }
+
+    .calorie-ring img {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 20px rgba(23, 24, 26, 0.1));
+    }
+
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .ring-number {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .ring-fire {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--mango-bg);
+      box-shadow: 0 2px 6px rgba(255, 122, 69, 0.25);
+    }
+
+    .ring-label {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    @media (max-width: 860px) {
+      .features { padding: 64px 32px 80px; }
+      .features-grid { grid-template-columns: 1fr; gap: 20px; }
+      .feature-card { min-height: 0; }
+    }
   </style>
 </head>
 <body>
@@ -338,6 +663,123 @@
 
     <div class="mockup-slot">
       <img src="phones.png" alt="CampusBite app preview" />
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="proof-head">
+      <h2>Smart eating for every student, at <span class="accent">250+ campuses</span> across the USA & Canada.</h2>
+      <p class="proof-sub">Used by students to eat smarter, together.</p>
+    </div>
+
+    <div class="proof-stage">
+      <div class="logo-badge badge-fiu"><img src="logos/fiu.png" alt="FIU logo" /></div>
+      <div class="logo-badge badge-stanford"><img src="logos/stanford.png" alt="Stanford logo" /></div>
+      <div class="logo-badge badge-minnesota"><img src="logos/minnesota.png" alt="University of Minnesota logo" /></div>
+      <div class="logo-badge badge-miami"><img src="logos/miami.png" alt="Miami logo" /></div>
+      <div class="logo-badge badge-tamu"><img src="logos/tamu.png" alt="Texas A&M logo" /></div>
+      <div class="logo-badge badge-nyu"><img src="logos/nyu.png" alt="NYU logo" /></div>
+
+      <div class="proof-phone">
+        <img src="iphone_mockup.png" alt="CampusBite app preview" />
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Everything you need to eat <span class="accent">smarter</span> on campus.</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Smart Meal Suggestions</h3>
+        <p class="feature-sub">Not feeling it? Shuffle for something else.</p>
+
+        <div class="meal-shuffle">
+          <span>Not Feeling it?</span>
+          <button type="button" class="shuffle-btn">
+            <svg width="14" height="14" viewBox="0 0 12 11" fill="none" aria-hidden="true">
+              <path d="M11.8103 1.53071V4.15571C11.8103 4.32976 11.7412 4.49668 11.6181 4.61975C11.4951 4.74282 11.3281 4.81196 11.1541 4.81196H8.5291C8.35505 4.81196 8.18813 4.74282 8.06506 4.61975C7.94199 4.49668 7.87285 4.32976 7.87285 4.15571C7.87285 3.98166 7.94199 3.81474 8.06506 3.69167C8.18813 3.5686 8.35505 3.49946 8.5291 3.49946H9.46425L8.42519 2.54899C8.41808 2.54243 8.41097 2.53586 8.40441 2.52875C7.92262 2.04726 7.32988 1.69156 6.67834 1.49294C6.0268 1.29432 5.33644 1.25888 4.66798 1.38972C3.99953 1.52057 3.37347 1.8137 2.84491 2.24332C2.31634 2.67294 1.90147 3.22588 1.63678 3.85349C1.3721 4.4811 1.26572 5.16414 1.327 5.84252C1.38829 6.5209 1.61536 7.17382 1.98824 7.74383C2.36112 8.31384 2.86837 8.78348 3.46538 9.11141C4.06238 9.43934 4.73083 9.61553 5.41191 9.62446H5.4666C6.52749 9.62701 7.54869 9.22127 8.31855 8.49133C8.4451 8.37175 8.61397 8.30733 8.78801 8.31225C8.96205 8.31717 9.12701 8.39103 9.2466 8.51758C9.36618 8.64413 9.4306 8.813 9.42568 8.98704C9.42075 9.16108 9.3469 9.32604 9.22035 9.44563C8.20693 10.4062 6.86289 10.9401 5.4666 10.937H5.39168C4.49647 10.9243 3.61805 10.6921 2.83355 10.2607C2.04905 9.8293 1.38246 9.21188 0.892325 8.46267C0.402186 7.71346 0.103485 6.85536 0.0224489 5.96374C-0.0585869 5.07212 0.0805214 4.17424 0.427559 3.34894C0.774597 2.52364 1.31895 1.79616 2.01282 1.23038C2.70669 0.664607 3.52885 0.277838 4.40712 0.104036C5.28538 -0.0697656 6.19289 -0.0252839 7.04994 0.233575C7.907 0.492435 8.6874 0.957755 9.32261 1.58868L10.4978 2.66383V1.53071C10.4978 1.35666 10.567 1.18974 10.6901 1.06667C10.8131 0.943598 10.98 0.874457 11.1541 0.874457C11.3281 0.874457 11.4951 0.943598 11.6181 1.06667C11.7412 1.18974 11.8103 1.35666 11.8103 1.53071Z" fill="#16443A"/>
+            </svg>
+            Shuffle
+          </button>
+        </div>
+
+        <div class="meal-list">
+          <div class="meal-item is-selected">
+            <div class="meal-thumb"><img src="features/food-tacos.png" alt="Eggs & oatmeal" /></div>
+            <p class="meal-name">Eggs & oatmeal</p>
+            <div class="meal-cal">
+              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
+                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
+              </svg>
+              500
+            </div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-thumb"><img src="features/food-yogurt.jpeg" alt="Greek yogurt" /></div>
+            <p class="meal-name">Greek yogurt</p>
+            <div class="meal-cal">
+              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
+                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
+              </svg>
+              500
+            </div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-thumb"><img src="features/food-tacos.png" alt="Eggs & oatmeal" /></div>
+            <p class="meal-name">Eggs & oatmeal</p>
+            <div class="meal-cal">
+              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
+                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
+              </svg>
+              500
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <h3>Full Nutrition Breakdown</h3>
+        <p class="feature-sub">Calories, protein, carbs, fat — auto-tracked per meal.</p>
+
+        <div class="nutrition-stats">
+          <div class="stat">
+            <p class="stat-value">118g</p>
+            <p class="stat-label">Carbs left</p>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+          </div>
+          <div class="stat">
+            <p class="stat-value">118g</p>
+            <p class="stat-label">Fats left</p>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+          </div>
+          <div class="stat">
+            <p class="stat-value">118g</p>
+            <p class="stat-label">Proteins left</p>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <h3>Daily Calorie Ring</h3>
+        <p class="feature-sub">450 calories left</p>
+
+        <div class="calorie-ring">
+          <img src="features/icon-graph.svg" alt="" aria-hidden="true" />
+          <div class="ring-center">
+            <div class="ring-number">
+              450
+              <span class="ring-fire">
+                <svg width="20" height="19" viewBox="0 0 21 19" fill="none" aria-hidden="true">
+                  <path d="M8.07656 0.144405C7.99952 0.080348 7.9082 0.035754 7.81031 0.0143825C7.71241 -0.00698905 7.61082 -0.00451168 7.51408 0.0216057C7.41735 0.047723 7.32831 0.0967148 7.25448 0.164451C7.18065 0.232187 7.12418 0.316681 7.08984 0.410811L5.37109 5.13034L3.48359 3.30144C3.42021 3.23995 3.34451 3.1926 3.26149 3.1625C3.17847 3.1324 3.09002 3.12024 3.00196 3.12681C2.9139 3.13338 2.82823 3.15853 2.75059 3.20062C0.859375 5.58815 0 7.81862 0 9.99987C0 11.8232 0.724328 13.5719 2.01364 14.8612C3.30295 16.1505 5.05164 16.8749 6.875 16.8749C8.69836 16.8749 10.447 16.1505 11.7364 14.8612C13.0257 13.5719 13.75 11.8232 13.75 9.99987C13.75 5.35534 9.78203 1.56237 8.07656 0.144405ZM11.2414 10.7296C11.0793 11.6348 10.6438 12.4687 9.99347 13.1189C9.34313 13.7691 8.50918 14.2044 7.60391 14.3663C7.56959 14.3722 7.53482 14.375 7.5 14.3749C7.34322 14.3748 7.19219 14.3159 7.07685 14.2097C6.96151 14.1035 6.89029 13.9579 6.87731 13.8016C6.86433 13.6454 6.91054 13.49 7.00678 13.3662C7.10302 13.2424 7.24225 13.1594 7.39687 13.1335C8.69141 12.9155 9.78984 11.8171 10.0094 10.5202C10.0371 10.3567 10.1287 10.2109 10.2639 10.115C10.3992 10.019 10.567 9.9807 10.7305 10.0085C10.894 10.0362 11.0397 10.1278 11.1357 10.263C11.2316 10.3983 11.27 10.5661 11.2422 10.7296H11.2414Z" fill="#FF7A45"/>
+                </svg>
+              </span>
+            </div>
+            <p class="ring-label">Calories left</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
