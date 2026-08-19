@@ -523,33 +523,48 @@
     /* Card 2 — nutrition breakdown */
     .nutrition-stats {
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      gap: 18px;
       margin-top: auto;
       padding-top: 24px;
     }
 
-    .stat { flex: 1; }
-
-    .stat-value {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0 0 4px;
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .stat-label {
+      flex-shrink: 0;
+      width: 84px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .stat-sub {
       font-size: 12px;
-      margin: 0 0 10px;
+      line-height: 1.2;
+      color: var(--ink-soft);
+      margin: 2px 0 0;
     }
 
     .stat-bar {
-      height: 4px;
+      flex: 1;
+      height: 14px;
       border-radius: var(--radius-full);
-      background: rgba(0, 0, 0, 0.12);
+      background: rgba(0, 0, 0, 0.1);
       overflow: hidden;
     }
 
     .stat-bar-fill {
       height: 100%;
+      border-radius: var(--radius-full);
       background: var(--ink);
     }
 
@@ -744,19 +759,25 @@
 
         <div class="nutrition-stats">
           <div class="stat">
-            <p class="stat-value">118g</p>
-            <p class="stat-label">Carbs left</p>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+            <div class="stat-label">
+              <p class="stat-value">118g</p>
+              <p class="stat-sub">Carbs left</p>
+            </div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%"></div></div>
           </div>
           <div class="stat">
-            <p class="stat-value">118g</p>
-            <p class="stat-label">Fats left</p>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+            <div class="stat-label">
+              <p class="stat-value">118g</p>
+              <p class="stat-sub">Fats left</p>
+            </div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 42%"></div></div>
           </div>
           <div class="stat">
-            <p class="stat-value">118g</p>
-            <p class="stat-label">Proteins left</p>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 59%"></div></div>
+            <div class="stat-label">
+              <p class="stat-value">118g</p>
+              <p class="stat-sub">Proteins left</p>
+            </div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: 80%"></div></div>
           </div>
         </div>
       </div>
