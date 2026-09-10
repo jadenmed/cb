@@ -33,6 +33,8 @@
       --forest-border: #37957f;
       --forest-bg: #ebf9f4;
       --mango-bg: #ffeed9;
+      --protein: #7c5cff;
+      --protein-bg: #f0ecff;
     }
 
     * {
@@ -416,17 +418,57 @@
     }
 
     .feature-card {
+      position: relative;
       display: flex;
       flex-direction: column;
       background: var(--card-bg);
       border: 1px solid var(--hairline);
-      border-radius: 8px;
+      border-radius: 14px;
       padding: 28px 20px 24px;
       min-height: 289px;
+      overflow: hidden;
       box-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px rgba(23, 24, 26, 0.05);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
     }
 
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(23, 24, 26, 0.06), 0 24px 40px rgba(23, 24, 26, 0.1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .features-grid .feature-card:nth-child(1)::before { background: radial-gradient(circle, rgba(55, 149, 127, 0.18), transparent 70%); }
+    .features-grid .feature-card:nth-child(2)::before { background: radial-gradient(circle, rgba(124, 92, 255, 0.14), transparent 70%); }
+    .features-grid .feature-card:nth-child(3)::before { background: radial-gradient(circle, rgba(255, 122, 69, 0.18), transparent 70%); }
+
+    .card-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon.forest { background: var(--forest-bg); }
+    .card-icon.protein { background: var(--protein-bg); }
+    .card-icon.mango { background: var(--mango-bg); }
+
     .feature-card h3 {
+      position: relative;
       font-size: 26px;
       font-weight: 600;
       letter-spacing: -1.68px;
@@ -434,6 +476,7 @@
     }
 
     .feature-card .feature-sub {
+      position: relative;
       font-size: 16px;
       line-height: 1.4;
       color: var(--ink-soft);
@@ -567,6 +610,10 @@
       border-radius: var(--radius-full);
       background: var(--ink);
     }
+
+    .stat-bar-fill.carbs { background: var(--accent); }
+    .stat-bar-fill.fats { background: var(--forest); }
+    .stat-bar-fill.protein { background: var(--protein); }
 
     /* Card 3 — calorie ring */
     .calorie-ring {
@@ -706,6 +753,11 @@
 
     <div class="features-grid">
       <div class="feature-card">
+        <div class="card-icon forest">
+          <svg width="20" height="19" viewBox="0 0 12 11" fill="none" aria-hidden="true">
+            <path d="M11.8103 1.53071V4.15571C11.8103 4.32976 11.7412 4.49668 11.6181 4.61975C11.4951 4.74282 11.3281 4.81196 11.1541 4.81196H8.5291C8.35505 4.81196 8.18813 4.74282 8.06506 4.61975C7.94199 4.49668 7.87285 4.32976 7.87285 4.15571C7.87285 3.98166 7.94199 3.81474 8.06506 3.69167C8.18813 3.5686 8.35505 3.49946 8.5291 3.49946H9.46425L8.42519 2.54899C8.41808 2.54243 8.41097 2.53586 8.40441 2.52875C7.92262 2.04726 7.32988 1.69156 6.67834 1.49294C6.0268 1.29432 5.33644 1.25888 4.66798 1.38972C3.99953 1.52057 3.37347 1.8137 2.84491 2.24332C2.31634 2.67294 1.90147 3.22588 1.63678 3.85349C1.3721 4.4811 1.26572 5.16414 1.327 5.84252C1.38829 6.5209 1.61536 7.17382 1.98824 7.74383C2.36112 8.31384 2.86837 8.78348 3.46538 9.11141C4.06238 9.43934 4.73083 9.61553 5.41191 9.62446H5.4666C6.52749 9.62701 7.54869 9.22127 8.31855 8.49133C8.4451 8.37175 8.61397 8.30733 8.78801 8.31225C8.96205 8.31717 9.12701 8.39103 9.2466 8.51758C9.36618 8.64413 9.4306 8.813 9.42568 8.98704C9.42075 9.16108 9.3469 9.32604 9.22035 9.44563C8.20693 10.4062 6.86289 10.9401 5.4666 10.937H5.39168C4.49647 10.9243 3.61805 10.6921 2.83355 10.2607C2.04905 9.8293 1.38246 9.21188 0.892325 8.46267C0.402186 7.71346 0.103485 6.85536 0.0224489 5.96374C-0.0585869 5.07212 0.0805214 4.17424 0.427559 3.34894C0.774597 2.52364 1.31895 1.79616 2.01282 1.23038C2.70669 0.664607 3.52885 0.277838 4.40712 0.104036C5.28538 -0.0697656 6.19289 -0.0252839 7.04994 0.233575C7.907 0.492435 8.6874 0.957755 9.32261 1.58868L10.4978 2.66383V1.53071C10.4978 1.35666 10.567 1.18974 10.6901 1.06667C10.8131 0.943598 10.98 0.874457 11.1541 0.874457C11.3281 0.874457 11.4951 0.943598 11.6181 1.06667C11.7412 1.18974 11.8103 1.35666 11.8103 1.53071Z" fill="#16443A"/>
+          </svg>
+        </div>
         <h3>Smart Meal Suggestions</h3>
         <p class="feature-sub">Not feeling it? Shuffle for something else.</p>
 
@@ -754,6 +806,13 @@
       </div>
 
       <div class="feature-card">
+        <div class="card-icon protein">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2" y="10" width="4" height="8" rx="1" fill="#7C5CFF"/>
+            <rect x="8" y="5" width="4" height="13" rx="1" fill="#7C5CFF"/>
+            <rect x="14" y="2" width="4" height="16" rx="1" fill="#7C5CFF"/>
+          </svg>
+        </div>
         <h3>Full Nutrition Breakdown</h3>
         <p class="feature-sub">Calories, protein, carbs, fat — auto-tracked per meal.</p>
 
@@ -763,26 +822,31 @@
               <p class="stat-value">118g</p>
               <p class="stat-sub">Carbs left</p>
             </div>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%"></div></div>
+            <div class="stat-bar"><div class="stat-bar-fill carbs" style="width: 65%"></div></div>
           </div>
           <div class="stat">
             <div class="stat-label">
               <p class="stat-value">118g</p>
               <p class="stat-sub">Fats left</p>
             </div>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 42%"></div></div>
+            <div class="stat-bar"><div class="stat-bar-fill fats" style="width: 42%"></div></div>
           </div>
           <div class="stat">
             <div class="stat-label">
               <p class="stat-value">118g</p>
               <p class="stat-sub">Proteins left</p>
             </div>
-            <div class="stat-bar"><div class="stat-bar-fill" style="width: 80%"></div></div>
+            <div class="stat-bar"><div class="stat-bar-fill protein" style="width: 80%"></div></div>
           </div>
         </div>
       </div>
 
       <div class="feature-card">
+        <div class="card-icon mango">
+          <svg width="18" height="21" viewBox="0 0 14 17" fill="none" aria-hidden="true">
+            <path d="M8.07656 0.144405C7.99952 0.080348 7.9082 0.035754 7.81031 0.0143825C7.71241 -0.00698905 7.61082 -0.00451168 7.51408 0.0216057C7.41735 0.047723 7.32831 0.0967148 7.25448 0.164451C7.18065 0.232187 7.12418 0.316681 7.08984 0.410811L5.37109 5.13034L3.48359 3.30144C3.42021 3.23995 3.34451 3.1926 3.26149 3.1625C3.17847 3.1324 3.09002 3.12024 3.00196 3.12681C2.9139 3.13338 2.82823 3.15853 2.75059 3.20062C0.859375 5.58815 0 7.81862 0 9.99987C0 11.8232 0.724328 13.5719 2.01364 14.8612C3.30295 16.1505 5.05164 16.8749 6.875 16.8749C8.69836 16.8749 10.447 16.1505 11.7364 14.8612C13.0257 13.5719 13.75 11.8232 13.75 9.99987C13.75 5.35534 9.78203 1.56237 8.07656 0.144405ZM11.2414 10.7296C11.0793 11.6348 10.6438 12.4687 9.99347 13.1189C9.34313 13.7691 8.50918 14.2044 7.60391 14.3663C7.56959 14.3722 7.53482 14.375 7.5 14.3749C7.34322 14.3748 7.19219 14.3159 7.07685 14.2097C6.96151 14.1035 6.89029 13.9579 6.87731 13.8016C6.86433 13.6454 6.91054 13.49 7.00678 13.3662C7.10302 13.2424 7.24225 13.1594 7.39687 13.1335C8.69141 12.9155 9.78984 11.8171 10.0094 10.5202C10.0371 10.3567 10.1287 10.2109 10.2639 10.115C10.3992 10.019 10.567 9.9807 10.7305 10.0085C10.894 10.0362 11.0397 10.1278 11.1357 10.263C11.2316 10.3983 11.27 10.5661 11.2422 10.7296H11.2414Z" fill="#FF7A45"/>
+          </svg>
+        </div>
         <h3>Daily Calorie Ring</h3>
         <p class="feature-sub">450 calories left</p>
 
