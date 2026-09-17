@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="min-h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,1058 +9,108 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #16443a;
-      --primary-bg: #ccf0e4;
-      --accent: #ff7a45;
-      --accent-dark: #db5732;
-      --text: #1e1c1a;
-      --text-muted: #74716c;
-      --text-white: #ffffff;
-      --bg: #f0f0ef;
-      --bg-muted: #c9c7c4;
-      --mango-050: #fff8f0;
-      --white-bone: #fdf9f4;
-      --radius-full: 1000px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { min-height: 100%; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--mango-050);
-      color: var(--text);
-    }
-
-    .font-display { font-family: 'Satoshi Variable', 'Inter', sans-serif; }
-
-    /* Navbar */
-    header.navbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 248, 240, 0.64);
-      backdrop-filter: blur(3px);
-      border-bottom: 1px solid var(--bg);
-      padding: 0 24px;
-    }
-
-    .navbar-holder {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      height: 80px;
-    }
-
-    .logo-holder {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 140px;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-mark img { width: 34px; height: 22.7px; display: block; }
-
-    .logo-word {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 15.13px;
-      line-height: normal;
-      letter-spacing: 0;
-      color: var(--primary);
-      white-space: nowrap;
-    }
-
-    nav.navlinks {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-    }
-
-    nav.navlinks a {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.35;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    nav.navlinks a:hover { color: var(--text); }
-
-    .navbar-cta { width: 140px; display: flex; justify-content: flex-end; flex-shrink: 0; }
-
-    .btn-accent {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      background: var(--accent);
-      color: var(--text-white);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 24px;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 16px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 2px rgba(255,122,69,0.02), 0 13px 5px rgba(255,122,69,0.04), 0 30px 12px rgba(255,122,69,0.05), 0 100px 40px rgba(255,122,69,0.07);
-      transition: background 0.15s ease, transform 0.15s ease;
-    }
-
-    .btn-accent:hover { background: var(--accent-dark); }
-    .btn-accent:active { transform: scale(0.97); }
-
-    /* Hero */
-    .hero-section {
-      padding: 144px 24px;
-      overflow: hidden;
-    }
-
-    .hero-holder {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .hero-copy {
-      flex: 1 0 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
-    .pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--text-white);
-      border: 1px solid var(--bg);
-      border-radius: var(--radius-full);
-      padding: 8px 12px;
-    }
-
-    .pill-badge .pulse-dot {
-      width: 16px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .pill-badge .pulse-dot::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(255,122,69,0.18);
-    }
-
-    .pill-badge span {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--accent-dark);
-      white-space: nowrap;
-    }
-
-    .headline-block {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      padding: 8px 0;
-    }
-
-    h1.hero-h1 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 80px;
-      line-height: 1;
-      letter-spacing: -1.6px;
-      color: var(--text);
-    }
-
-    h1.hero-h1 .accent { color: var(--accent); }
-
-    .hero-sub {
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 1.65;
-      color: var(--text-muted);
-      max-width: 46rem;
-    }
-
-    .store-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .store-badge {
-      display: inline-flex;
-      height: 52px;
-      width: 180px;
-      text-decoration: none;
-    }
-
-    .store-badge img { width: 100%; height: 100%; display: block; }
-
-    .stats-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding-top: 16px;
-    }
-
-    .stat-track {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 168px;
-    }
-
-    .stat-number {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 1.35;
-      color: #000000;
-      white-space: nowrap;
-    }
-
-    .stat-label {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 1.1;
-      color: var(--text-muted);
-    }
-
-    /* Hero image */
-    .hero-image {
-      flex: 1 0 0;
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: auto;
-    }
-
-    /* Campus bar */
-    .campus-bar {
-      background: var(--white-bone);
-      border-top: 1px solid var(--bg-muted);
-      border-bottom: 1px solid var(--bg-muted);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-      padding: 32px 24px;
-      text-align: center;
-    }
-
-    .campus-bar p.eyebrow-line {
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--text-muted);
-    }
-
-    .campus-list {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 80px;
-      flex-wrap: wrap;
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--text-muted);
-    }
-
-    /* Features */
-    .features-section {
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .features-intro {
-      max-width: 640px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .features-intro h2 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 48px;
-      line-height: 1.1;
-      letter-spacing: 0;
-      color: var(--text);
-    }
-
-    .features-intro .features-sub {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 1.35;
-      letter-spacing: 0;
-      color: var(--text-muted);
-    }
-
-    .features-grid {
-      width: 100%;
-      max-width: 1200px;
-      margin-top: 64px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto auto;
-      gap: 24px;
-      text-align: left;
-    }
-
-    .feature-card {
-      border-radius: 24px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 250px;
-    }
-
-    .feature-card.card-menus { grid-column: 1 / 3; grid-row: 1; background: var(--primary); }
-    .feature-card.card-goals { grid-column: 3; grid-row: 1; background: var(--text-white); border: 1px solid var(--bg); }
-    .feature-card.card-logging { grid-column: 1; grid-row: 2 / 4; background: var(--accent); position: relative; }
-    .feature-card.card-diet { grid-column: 2; grid-row: 2; background: var(--text-white); border: 1px solid var(--bg); }
-    .feature-card.card-progress { grid-column: 3; grid-row: 2; background: var(--text-white); border: 1px solid var(--bg); }
-    .feature-card.card-image { grid-column: 2 / 4; grid-row: 3; background: var(--mango-050); padding: 0; overflow: hidden; }
-    .feature-card.card-image img { width: 100%; height: auto; display: block; }
-
-    .feature-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .feature-tag {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0;
-      color: var(--primary);
-      background: var(--primary-bg);
-      border-radius: var(--radius-full);
-      padding: 4px 10px;
-    }
-
-    .feature-card.card-logging .feature-tap {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 40px;
-      line-height: 1;
-      color: var(--text-white);
-      margin-top: auto;
-    }
-
-    .feature-eyebrow {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      line-height: 1.35;
-      letter-spacing: 0;
-    }
-
-    .feature-title {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      line-height: 1.1;
-      letter-spacing: 0;
-    }
-
-    .feature-desc {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.65;
-      letter-spacing: 0;
-    }
-
-    .feature-card.card-menus .feature-eyebrow,
-    .feature-card.card-logging .feature-eyebrow { color: var(--primary-bg); }
-    .feature-card.card-goals .feature-eyebrow,
-    .feature-card.card-diet .feature-eyebrow,
-    .feature-card.card-progress .feature-eyebrow { color: var(--accent); }
-    .feature-card.card-logging .feature-eyebrow { color: var(--text-white); }
-
-    .feature-card.card-menus .feature-title,
-    .feature-card.card-logging .feature-title { color: var(--text-white); }
-    .feature-card.card-goals .feature-title,
-    .feature-card.card-diet .feature-title,
-    .feature-card.card-progress .feature-title { color: var(--text); }
-
-    .feature-card.card-menus .feature-desc,
-    .feature-card.card-logging .feature-desc { color: var(--bg); }
-    .feature-card.card-goals .feature-desc,
-    .feature-card.card-diet .feature-desc,
-    .feature-card.card-progress .feature-desc { color: var(--text-muted); }
-
-    /* Action */
-    .action-section {
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .action-scroll {
-      position: relative;
-      max-width: 1200px;
-      width: 100%;
-      margin-top: 80px;
-    }
-
-    .action-sticky {
-      position: sticky;
-      top: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-align: left;
-      padding: 40px 0;
-    }
-
-    .action-trigger {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      pointer-events: none;
-    }
-
-    .action-phone {
-      width: 588px;
-      flex-shrink: 0;
-      position: relative;
-      aspect-ratio: 588 / 520;
-    }
-
-    .action-phone-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .action-phone-img.is-active { opacity: 1; }
-
-    .action-content {
-      width: 480px;
-      flex-shrink: 0;
-      position: relative;
-      min-height: 220px;
-    }
-
-    .action-step-block {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      pointer-events: none;
-    }
-
-    .action-step-block.is-active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .action-step {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 0;
-      color: var(--accent);
-    }
-
-    .action-content h3 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 32px;
-      line-height: 1.1;
-      letter-spacing: 0;
-      color: var(--text);
-    }
-
-    .action-content p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    /* Steps */
-    .steps-section {
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .steps-grid {
-      width: 100%;
-      max-width: 1200px;
-      margin-top: 64px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      text-align: left;
-    }
-
-    .step-card {
-      background: var(--text-white);
-      border: 1px solid var(--bg);
-      border-radius: 24px;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-bg);
-      color: var(--primary);
-      border-radius: 10px;
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .step-card h3 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      line-height: 1.1;
-      letter-spacing: 0;
-      color: var(--text);
-    }
-
-    .step-card p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    /* Testimonials */
-    .testimonials-section {
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .testimonials-grid {
-      width: 100%;
-      max-width: 1200px;
-      margin-top: 64px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      text-align: left;
-    }
-
-    .testimonial-card {
-      background: var(--text-white);
-      border: 1px solid var(--bg);
-      border-radius: 24px;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .testimonial-stars {
-      display: flex;
-      gap: 4px;
-      color: var(--accent);
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    .testimonial-card p.testimonial-quote {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--text);
-    }
-
-    .testimonial-person {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: auto;
-    }
-
-    .testimonial-avatar {
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-bg);
-      color: var(--primary);
-      border-radius: 50%;
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .testimonial-name {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .testimonial-role {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* Dining CTA */
-    .dining-section {
-      padding: 96px 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .dining-card {
-      width: 100%;
-      max-width: 1200px;
-      background: var(--text-white);
-      border-radius: 32px;
-      box-shadow: 0 30px 60px rgba(30,28,26,0.06);
-      padding: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 48px;
-    }
-
-    .dining-copy {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-      text-align: left;
-    }
-
-    .dining-copy h2 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 48px;
-      line-height: 1.1;
-      letter-spacing: 0;
-      color: var(--text);
-    }
-
-    .dining-copy p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--text-muted);
-      max-width: 34rem;
-    }
-
-    .dining-card .btn-accent {
-      flex-shrink: 0;
-      font-size: 16px;
-      padding: 14px 22px;
-    }
-
-    /* FAQ */
-    .faq-section {
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .faq-list {
-      width: 100%;
-      max-width: 1200px;
-      margin-top: 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      text-align: left;
-    }
-
-    .faq-item {
-      background: var(--text-white);
-      border: 1px solid var(--bg);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 32px 40px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      color: var(--text);
-    }
-
-    .faq-icon {
-      width: 24px;
-      height: 24px;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .faq-icon::before,
-    .faq-icon::after {
-      content: '';
-      position: absolute;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: transform 0.2s ease;
-    }
-
-    .faq-icon::before { width: 16px; height: 2px; top: 11px; left: 4px; }
-    .faq-icon::after { width: 2px; height: 16px; top: 4px; left: 11px; }
-
-    .faq-item.is-open .faq-icon::after { transform: scaleY(0); }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding: 0 40px;
-    }
-
-    .faq-answer p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
-
-    .faq-item.is-open .faq-answer {
-      max-height: 300px;
-      padding: 0 40px 32px;
-    }
-
-    /* Closing CTA */
-    .cta-section {
-      padding: 96px 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .cta-card {
-      width: 100%;
-      max-width: 1200px;
-      background: linear-gradient(135deg, #1c5c47 0%, var(--primary) 100%);
-      border-radius: 32px;
-      padding: 80px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
-    }
-
-    .cta-card h2 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 48px;
-      line-height: 1.1;
-      letter-spacing: 0;
-      color: var(--text-white);
-    }
-
-    .cta-card p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 20px;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .cta-card .store-row { margin-top: 8px; }
-
-    /* Footer */
-    footer.site-footer {
-      background: var(--primary);
-      padding: 64px 24px 32px;
-    }
-
-    .footer-holder {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 48px;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 340px;
-    }
-
-    .footer-brand .logo-holder { width: auto; }
-    .footer-brand .logo-mark img { filter: brightness(0) invert(1); }
-    .footer-brand .logo-word { color: var(--text-white); }
-
-    .footer-brand p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.65);
-    }
-
-    .footer-columns {
-      display: flex;
-      gap: 80px;
-    }
-
-    .footer-column {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .footer-column h4 {
-      font-family: 'Satoshi Variable', 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      color: var(--text-white);
-      text-transform: uppercase;
-    }
-
-    .footer-column a {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.65);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .footer-column a:hover { color: var(--text-white); }
-
-    .footer-divider {
-      margin: 48px 0 24px;
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.55);
-    }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      h1.hero-h1 { font-size: 52px; }
-      .hero-sub { font-size: 18px; }
-      .hero-holder { flex-direction: column; }
-      .hero-image { width: 100%; max-width: 380px; aspect-ratio: 1; }
-      .stats-row { flex-wrap: wrap; }
-      nav.navlinks { display: none; }
-      .campus-list { gap: 32px; }
-      .action-scroll { height: auto !important; }
-      .action-trigger { display: none; }
-      .action-sticky {
-        position: static;
-        flex-direction: column;
-        gap: 48px;
-        padding: 0;
-      }
-      .action-phone { width: 100%; max-width: 340px; }
-      .action-content { width: 100%; position: static; min-height: 0; }
-      .action-step-block {
-        position: static;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-      .action-step-block:not(.is-active) { display: none; }
-      .action-phone-img { position: static; opacity: 1; }
-      .action-phone-img:not(.is-active) { display: none; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feature-card.card-menus,
-      .feature-card.card-goals,
-      .feature-card.card-logging,
-      .feature-card.card-diet,
-      .feature-card.card-progress { grid-column: 1; grid-row: auto; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .dining-card { flex-direction: column; align-items: flex-start; padding: 40px; }
-      .dining-copy h2 { font-size: 36px; }
-      .footer-top { flex-direction: column; gap: 40px; }
-      .footer-brand { max-width: none; }
-      .footer-columns { gap: 40px; flex-wrap: wrap; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-section { padding: 96px 16px; }
-      h1.hero-h1 { font-size: 38px; }
-      .store-row { flex-wrap: wrap; }
-      .navbar-cta { display: none; }
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16443a',
+            'primary-bg': '#ccf0e4',
+            accent: '#ff7a45',
+            'accent-dark': '#db5732',
+            ink: '#1e1c1a',
+            muted: '#74716c',
+            bg: '#f0f0ef',
+            'bg-muted': '#c9c7c4',
+            mango: '#fff8f0',
+            bone: '#fdf9f4',
+          },
+          fontFamily: {
+            display: ['Satoshi Variable', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          screens: {
+            xs: '480px',
+            dt: '960px',
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body>
+<body class="min-h-full bg-mango text-ink font-sans">
 
-  <header class="navbar">
-    <div class="navbar-holder">
-      <div class="logo-holder">
-        <div class="logo-mark">
-          <img src="logo.svg" alt="CampusBite logo" />
+  <header class="sticky top-0 z-20 bg-mango/[0.64] backdrop-blur-[3px] border-b border-bg px-6">
+    <div class="max-w-[1200px] mx-auto flex items-center gap-6 h-20">
+      <div class="flex items-center gap-2 w-[140px] shrink-0">
+        <div class="flex items-center justify-center shrink-0">
+          <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block" />
         </div>
-        <span class="logo-word">CampusBite</span>
+        <span class="font-display font-bold text-[15.13px] leading-none text-primary whitespace-nowrap">CampusBite</span>
       </div>
-      <nav class="navlinks">
-        <a href="#top">Home</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#about">About</a>
-        <a href="#for-campuses">For campuses</a>
-        <a href="#contact">Contact</a>
+      <nav class="flex-1 hidden dt:flex items-center justify-center gap-8">
+        <a href="#top" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Home</a>
+        <a href="#how-it-works" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
+        <a href="#about" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">About</a>
+        <a href="#for-campuses" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">For campuses</a>
+        <a href="#contact" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Contact</a>
       </nav>
-      <div class="navbar-cta">
-        <a href="#download" class="btn-accent">Get the app</a>
+      <div class="w-[140px] hidden xs:flex justify-end shrink-0">
+        <a href="#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
       </div>
     </div>
   </header>
 
-  <section class="hero-section" id="top">
-    <div class="hero-holder">
-      <div class="hero-copy">
-        <div class="pill-badge">
-          <span class="pulse-dot"></span>
-          <span>NOW ON IOS &amp; ANDROID</span>
+  <section class="py-24 px-4 xs:px-6 dt:py-36 overflow-hidden" id="top">
+    <div class="max-w-[1200px] mx-auto flex flex-col dt:flex-row items-center gap-6">
+      <div class="flex-1 min-w-0 flex flex-col items-start gap-6">
+        <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+          <span class="w-4 h-4 flex items-center justify-center">
+            <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+          </span>
+          <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">NOW ON IOS &amp; ANDROID</span>
         </div>
 
-        <div class="headline-block">
-          <h1 class="hero-h1 font-display">Eat smart on <span class="accent">campus.</span></h1>
-          <p class="hero-sub">CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan.</p>
+        <div class="flex flex-col gap-6 py-2">
+          <h1 class="font-display font-black text-[38px] xs:text-[52px] dt:text-[80px] leading-none tracking-[-1.6px] text-ink">Eat smart on <span class="text-accent">campus.</span></h1>
+          <p class="font-medium text-[18px] dt:text-[22px] leading-[1.65] text-muted max-w-[46rem]">CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan.</p>
         </div>
 
-        <div class="store-row">
-          <a href="#" class="store-badge" aria-label="Download on the App Store">
-            <img src="App Store.svg" alt="Download on the App Store" />
+        <div class="flex items-center gap-4 flex-wrap">
+          <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Download on the App Store">
+            <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
           </a>
-          <a href="#" class="store-badge" aria-label="Get it on Google Play">
-            <img src="Google Play.svg" alt="Get it on Google Play" />
+          <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Get it on Google Play">
+            <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
           </a>
         </div>
 
-        <div class="stats-row">
-          <div class="stat-track">
-            <p class="stat-number">250+</p>
-            <p class="stat-label">campuses rolling out</p>
+        <div class="grid grid-cols-3 gap-3 pt-4 dt:flex dt:items-center dt:gap-4">
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">250+</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">campuses rolling out</p>
           </div>
-          <div class="stat-track">
-            <p class="stat-number">38K+</p>
-            <p class="stat-label">meals logged</p>
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">38K+</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">meals logged</p>
           </div>
-          <div class="stat-track">
-            <p class="stat-number">4.8</p>
-            <p class="stat-label">average rating</p>
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">4.8</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">average rating</p>
           </div>
         </div>
       </div>
 
-      <div class="hero-image">
-        <img src="hero-image.png" alt="CampusBite app on two phones" />
+      <div class="w-full max-w-[380px] aspect-square mx-auto flex items-center justify-center dt:flex-1 dt:min-w-0 dt:w-auto dt:max-w-none dt:aspect-auto dt:mx-0">
+        <img src="hero-image.png" alt="CampusBite app on two phones" class="w-full h-auto" />
       </div>
     </div>
   </section>
 
-  <section class="campus-bar">
-    <p class="eyebrow-line">COMING TO DINING HALLS AT CAMPUSES ACROSS THE U.S.</p>
-    <div class="campus-list">
+  <section class="bg-bone border-t border-b border-bg-muted flex flex-col items-center gap-6 py-8 px-6 text-center">
+    <p class="font-semibold text-base text-muted">COMING TO DINING HALLS AT CAMPUSES ACROSS THE U.S.</p>
+    <div class="flex items-center justify-center gap-8 dt:gap-20 flex-wrap font-display font-bold text-xl text-muted">
       <span>FIU</span>
       <span>Miami</span>
       <span>NYU</span>
@@ -1068,287 +118,311 @@
     </div>
   </section>
 
-  <section class="features-section" id="how-it-works">
-    <div class="features-intro">
-      <div class="pill-badge">
-        <span class="pulse-dot"></span>
-        <span>WHY CAMPUSBITE</span>
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center" id="how-it-works">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">WHY CAMPUSBITE</span>
       </div>
-      <h2 class="font-display">Everything you need to eat well on campus</h2>
-      <p class="features-sub">Built around the food that's already on your meal plan — not a generic diet app.</p>
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Everything you need to eat well on campus</h2>
+      <p class="font-sans font-normal text-xl leading-[1.35] text-muted">Built around the food that's already on your meal plan — not a generic diet app.</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card card-menus">
-        <span class="feature-eyebrow">MENUS</span>
-        <h3 class="feature-title">Every dining hall, decoded</h3>
-        <p class="feature-desc">See today's menu at every dining hall, filtered to your diet, with allergen flags.</p>
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 dt:grid-rows-[auto_auto_auto] gap-6 text-left">
+      <div class="rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-span-2 dt:col-start-1 dt:row-start-1 bg-primary">
+        <span class="font-display font-black text-sm leading-[1.35] text-primary-bg">MENUS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-white">Every dining hall, decoded</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-bg">See today's menu at every dining hall, filtered to your diet, with allergen flags.</p>
       </div>
-      <div class="feature-card card-goals">
-        <span class="feature-eyebrow">GOALS</span>
-        <h3 class="feature-title">Targets built for you</h3>
-        <p class="feature-desc">Personalized calories &amp; macros from your body and goals.</p>
+      <div class="rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-3 dt:row-start-1 bg-white border border-bg">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">GOALS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Targets built for you</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-muted">Personalized calories &amp; macros from your body and goals.</p>
       </div>
-      <div class="feature-card card-logging">
-        <span class="feature-eyebrow">LOGGING</span>
-        <h3 class="feature-title">Log a day in seconds</h3>
-        <p class="feature-desc">Swipe to log breakfast, lunch, and dinner. It adds up on its own.</p>
-        <span class="feature-tap">1-tap</span>
+      <div class="rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-1 dt:row-start-2 dt:row-span-2 bg-accent relative">
+        <span class="font-display font-black text-sm leading-[1.35] text-white">LOGGING</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-white">Log a day in seconds</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-bg">Swipe to log breakfast, lunch, and dinner. It adds up on its own.</p>
+        <span class="font-display font-black text-[40px] leading-none text-white mt-auto">1-tap</span>
       </div>
-      <div class="feature-card card-diet">
-        <span class="feature-eyebrow">DIET</span>
-        <h3 class="feature-title">Fits your restrictions</h3>
-        <div class="feature-tags">
-          <span class="feature-tag">VEGAN</span>
-          <span class="feature-tag">GLUTEN-FREE</span>
-          <span class="feature-tag">HALAL</span>
-          <span class="feature-tag">ALLERGIES</span>
+      <div class="rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-2 dt:row-start-2 bg-white border border-bg">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">DIET</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Fits your restrictions</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">VEGAN</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">GLUTEN-FREE</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">HALAL</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">ALLERGIES</span>
         </div>
       </div>
-      <div class="feature-card card-progress">
-        <span class="feature-eyebrow">PROGRESS</span>
-        <h3 class="feature-title">Streaks &amp; trends</h3>
-        <p class="feature-desc">Weekly recaps that keep you going.</p>
+      <div class="rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-3 dt:row-start-2 bg-white border border-bg">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">PROGRESS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Streaks &amp; trends</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-muted">Weekly recaps that keep you going.</p>
       </div>
-      <div class="feature-card card-image">
-        <img src="Card-Feature.png" alt="CampusBite app logging a meal" />
+      <div class="rounded-3xl dt:col-start-2 dt:col-span-2 dt:row-start-3 bg-mango p-0 overflow-hidden">
+        <img src="Card-Feature.png" alt="CampusBite app logging a meal" class="w-full h-auto block" />
       </div>
     </div>
   </section>
 
-  <section class="action-section">
-    <div class="features-intro">
-      <div class="pill-badge">
-        <span class="pulse-dot"></span>
-        <span>SEE IT IN ACTION</span>
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">SEE IT IN ACTION</span>
       </div>
-      <h2 class="font-display">Your whole day, one screen at a time</h2>
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Your whole day, one screen at a time</h2>
     </div>
 
-    <div class="action-scroll">
-      <div class="action-trigger" data-step="0"></div>
-      <div class="action-trigger" data-step="1"></div>
-      <div class="action-trigger" data-step="2"></div>
-      <div class="action-trigger" data-step="3"></div>
-      <div class="action-sticky">
-        <div class="action-phone">
-          <img class="action-phone-img is-active" data-step="0" src="phone.png" alt="CampusBite calorie tracking screen" />
-          <img class="action-phone-img" data-step="1" src="phone (1).png" alt="CampusBite dining hall menu screen" />
-          <img class="action-phone-img" data-step="2" src="phone (2).png" alt="CampusBite meal logging screen" />
-          <img class="action-phone-img" data-step="3" src="phone (3).png" alt="CampusBite profile and trends screen" />
+    <div class="action-scroll relative max-w-[1200px] w-full mt-20">
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="0"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="1"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="2"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="3"></div>
+      <div class="action-sticky sticky top-24 dt:top-[120px] flex flex-col dt:flex-row items-center dt:justify-between text-center dt:text-left gap-8 dt:gap-0 py-6 dt:py-10">
+        <div class="action-phone relative w-full max-w-[300px] dt:w-[588px] dt:max-w-none shrink-0 aspect-[588/520]">
+          <img class="action-phone-img is-active absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="0" src="phone.png" alt="CampusBite calorie tracking screen" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="1" src="phone (1).png" alt="CampusBite dining hall menu screen" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="2" src="phone (2).png" alt="CampusBite meal logging screen" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="3" src="phone (3).png" alt="CampusBite profile and trends screen" />
         </div>
-        <div class="action-content">
-          <div class="action-step-block is-active" data-step="0">
-            <span class="action-step">01 · TARGET</span>
-            <h3 class="font-display">Know your numbers</h3>
-            <p>Your calorie and macro targets sit front and center, updating live as you plan and log through the day.</p>
+        <div class="action-content relative w-full min-h-[260px] dt:w-[480px] dt:shrink-0 dt:min-h-[220px]">
+          <div class="action-step-block is-active absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="0">
+            <span class="font-display font-black text-sm text-accent">01 · TARGET</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Know your numbers</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Your calorie and macro targets sit front and center, updating live as you plan and log through the day.</p>
           </div>
-          <div class="action-step-block" data-step="1">
-            <span class="action-step">02 · BROWSE</span>
-            <h3 class="font-display">Find your meal before you go</h3>
-            <p>Open the app and see exactly what every dining hall is serving today, sorted to fit your diet and goals.</p>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="1">
+            <span class="font-display font-black text-sm text-accent">02 · BROWSE</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Find your meal before you go</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Open the app and see exactly what every dining hall is serving today, sorted to fit your diet and goals.</p>
           </div>
-          <div class="action-step-block" data-step="2">
-            <span class="action-step">03 · LOG</span>
-            <h3 class="font-display">One swipe per meal</h3>
-            <p>Tap what you eat and CampusBite fills in the calories and macros automatically, no searching a database.</p>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="2">
+            <span class="font-display font-black text-sm text-accent">03 · LOG</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">One swipe per meal</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Tap what you eat and CampusBite fills in the calories and macros automatically, no searching a database.</p>
           </div>
-          <div class="action-step-block" data-step="3">
-            <span class="action-step">04 · IMPROVE</span>
-            <h3 class="font-display">Watch it come together</h3>
-            <p>Streaks, weekly trends, and gentle insights show what's working, and never shame a meal.</p>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="3">
+            <span class="font-display font-black text-sm text-accent">04 · IMPROVE</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Watch it come together</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Streaks, weekly trends, and gentle insights show what's working, and never shame a meal.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="steps-section">
-    <div class="features-intro">
-      <div class="pill-badge">
-        <span class="pulse-dot"></span>
-        <span>GET STARTED IN MINUTES</span>
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">GET STARTED IN MINUTES</span>
       </div>
-      <h2 class="font-display">Three taps to eating smarter</h2>
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Three taps to eating smarter</h2>
     </div>
 
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>Find your campus</h3>
-        <p>Search your university and load your real dining-hall menus.</p>
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 gap-6 text-left">
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">1</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Find your campus</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Search your university and load your real dining-hall menus.</p>
       </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>Set your goals</h3>
-        <p>Tell us your goal and dietary needs, we build your targets.</p>
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">2</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Set your goals</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Tell us your goal and dietary needs, we build your targets.</p>
       </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>Eat &amp; track</h3>
-        <p>Pick meals, swipe to log, and your day adds up automatically.</p>
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">3</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Eat &amp; track</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Pick meals, swipe to log, and your day adds up automatically.</p>
       </div>
     </div>
   </section>
 
-  <section class="testimonials-section">
-    <div class="features-intro">
-      <div class="pill-badge">
-        <span class="pulse-dot"></span>
-        <span>TESTIMONIALS</span>
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">TESTIMONIALS</span>
       </div>
-      <h2 class="font-display">Students actually use it</h2>
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Students actually use it</h2>
     </div>
 
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"I finally hit my protein without cooking a thing. It tells me what to grab at the hall."</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">MR</div>
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 gap-6 text-left">
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"I finally hit my protein without cooking a thing. It tells me what to grab at the hall."</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">MR</div>
           <div>
-            <p class="testimonial-name">Maya R.</p>
-            <p class="testimonial-role">Sophomore</p>
+            <p class="font-sans font-semibold text-[15px] text-ink">Maya R.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Sophomore</p>
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"Logging used to take forever. Now it's one swipe and my week tracks itself."</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">DK</div>
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"Logging used to take forever. Now it's one swipe and my week tracks itself."</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">DK</div>
           <div>
-            <p class="testimonial-name">Devin K.</p>
-            <p class="testimonial-role">Freshman</p>
+            <p class="font-sans font-semibold text-[15px] text-ink">Devin K.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Freshman</p>
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"The dietary filters are clutch. Gluten-free flags happen automatically!"</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">AL</div>
+      <div class="bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"The dietary filters are clutch. Gluten-free flags happen automatically!"</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">AL</div>
           <div>
-            <p class="testimonial-name">Aisha L.</p>
-            <p class="testimonial-role">Junior</p>
+            <p class="font-sans font-semibold text-[15px] text-ink">Aisha L.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Junior</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="dining-section" id="for-campuses">
-    <div class="dining-card">
-      <div class="dining-copy">
-        <div class="pill-badge">
-          <span class="pulse-dot"></span>
-          <span>FOR DINING SERVICES</span>
+  <section class="py-16 dt:py-24 px-6 flex justify-center" id="for-campuses">
+    <div class="w-full max-w-[1200px] bg-white rounded-[32px] shadow-[0_30px_60px_rgba(30,28,26,0.06)] p-10 dt:p-16 flex flex-col dt:flex-row items-start dt:items-center justify-between gap-12">
+      <div class="flex flex-col items-start gap-6 text-left">
+        <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+          <span class="w-4 h-4 flex items-center justify-center">
+            <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+          </span>
+          <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">FOR DINING SERVICES</span>
         </div>
-        <h2 class="font-display">Bring CampusBite to your campus</h2>
-        <p>Boost dining engagement and give students the nutrition tools they want, with anonymized insights and simple menu integration.</p>
+        <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Bring CampusBite to your campus</h2>
+        <p class="font-sans font-normal text-lg leading-[1.5] text-muted max-w-[34rem]">Boost dining engagement and give students the nutrition tools they want, with anonymized insights and simple menu integration.</p>
       </div>
-      <a href="#contact" class="btn-accent">Partner with us →</a>
+      <a href="#contact" class="shrink-0 inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-[22px] py-[14px] cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Partner with us →</a>
     </div>
   </section>
 
-  <section class="faq-section" id="contact">
-    <div class="features-intro">
-      <div class="pill-badge">
-        <span class="pulse-dot"></span>
-        <span>FREQUENTLY ASKED</span>
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center" id="contact">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">FREQUENTLY ASKED</span>
       </div>
-      <h2 class="font-display">Questions, answered</h2>
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Questions, answered</h2>
     </div>
 
-    <div class="faq-list">
-      <div class="faq-item is-open">
-        <button class="faq-question" type="button">
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 flex flex-col gap-4 text-left">
+      <div class="faq-item is-open group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
           <span>Is CampusBite free?</span>
-          <span class="faq-icon"></span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
         </button>
-        <div class="faq-answer">
-          <p>Yes. Tracking, menus, and logging are free. Plus adds photo logging, AI meal planning, and long-term trends.</p>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Yes. Tracking, menus, and logging are free. Plus adds photo logging, AI meal planning, and long-term trends.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" type="button">
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
           <span>Is my campus supported?</span>
-          <span class="faq-icon"></span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
         </button>
-        <div class="faq-answer">
-          <p>CampusBite is live at 250+ campuses and expanding every semester. Search your school in the app to check, or reach out and we'll help bring it to your dining halls.</p>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">CampusBite is live at 250+ campuses and expanding every semester. Search your school in the app to check, or reach out and we'll help bring it to your dining halls.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" type="button">
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
           <span>Does it work with my diet?</span>
-          <span class="faq-icon"></span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
         </button>
-        <div class="faq-answer">
-          <p>Yes. Set your dietary needs, allergies, and restrictions once, and every dining hall menu is filtered to match — vegan, gluten-free, halal, and more.</p>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Yes. Set your dietary needs, allergies, and restrictions once, and every dining hall menu is filtered to match — vegan, gluten-free, halal, and more.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" type="button">
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
           <span>Is my information private?</span>
-          <span class="faq-icon"></span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
         </button>
-        <div class="faq-answer">
-          <p>Your data is yours. We never sell personal information, and any insights shared with dining services are fully anonymized.</p>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Your data is yours. We never sell personal information, and any insights shared with dining services are fully anonymized.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="cta-card">
-      <h2 class="font-display">Start eating smarter today</h2>
-      <p>Free on iOS and Android. Your dining hall, decoded</p>
-      <div class="store-row">
-        <a href="#" class="store-badge" aria-label="Download on the App Store">
-          <img src="App Store.svg" alt="Download on the App Store" />
+  <section class="py-16 dt:py-24 px-6 flex justify-center">
+    <div class="w-full max-w-[1200px] bg-[linear-gradient(135deg,#1c5c47_0%,#16443a_100%)] rounded-[32px] px-6 py-20 flex flex-col items-center text-center gap-6">
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-white">Start eating smarter today</h2>
+      <p class="font-sans font-normal text-xl text-white/85">Free on iOS and Android. Your dining hall, decoded</p>
+      <div class="flex items-center gap-4 flex-wrap mt-2">
+        <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Download on the App Store">
+          <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
         </a>
-        <a href="#" class="store-badge" aria-label="Get it on Google Play">
-          <img src="Google Play.svg" alt="Get it on Google Play" />
+        <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Get it on Google Play">
+          <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
         </a>
       </div>
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="footer-holder">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="logo-holder">
-            <div class="logo-mark">
-              <img src="logo.svg" alt="CampusBite logo" />
+  <footer class="bg-primary px-6 pt-16 pb-8">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="flex flex-col dt:flex-row justify-between gap-10 dt:gap-12">
+        <div class="flex flex-col gap-4 max-w-none dt:max-w-[340px]">
+          <div class="flex items-center gap-2 w-auto">
+            <div class="flex items-center justify-center shrink-0">
+              <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block brightness-0 invert" />
             </div>
-            <span class="logo-word">CampusBite</span>
+            <span class="font-display font-bold text-[15.13px] text-white">CampusBite</span>
           </div>
-          <p>Smart eating for campus life. Personalized meal tracking from your real dining-hall menus.</p>
+          <p class="font-sans font-normal text-[15px] leading-[1.5] text-white/65">Smart eating for campus life. Personalized meal tracking from your real dining-hall menus.</p>
         </div>
-        <div class="footer-columns">
-          <div class="footer-column">
-            <h4>Product</h4>
-            <a href="#how-it-works">How it works</a>
-            <a href="#for-campuses">For campuses</a>
-            <a href="#download">Download</a>
+        <div class="flex gap-10 dt:gap-20 flex-wrap">
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Product</h4>
+            <a href="#how-it-works" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">How it works</a>
+            <a href="#for-campuses" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">For campuses</a>
+            <a href="#download" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Download</a>
           </div>
-          <div class="footer-column">
-            <h4>Company</h4>
-            <a href="#top">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Company</h4>
+            <a href="#top" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Home</a>
+            <a href="#about" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">About</a>
+            <a href="#contact" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Contact</a>
           </div>
-          <div class="footer-column">
-            <h4>Legal</h4>
-            <a href="#">Terms &amp; Conditions</a>
-            <a href="#">Privacy &amp; Policy</a>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Legal</h4>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Terms &amp; Conditions</a>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Privacy &amp; Policy</a>
           </div>
         </div>
       </div>
-      <hr class="footer-divider" />
-      <div class="footer-bottom">
+      <hr class="mt-12 mb-6 border-0 border-t border-white/15" />
+      <div class="flex flex-col dt:flex-row justify-between items-start dt:items-center flex-wrap gap-4 font-sans font-normal text-sm text-white/55">
         <span>© 2026 CampusBite · Powered by Ocean Development</span>
         <span>Made for campuses 🍔</span>
       </div>
