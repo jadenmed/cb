@@ -3,919 +3,1422 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CampusBite</title>
-  <meta name="description" content="CampusBite is coming to your campus. Join the waitlist to be first in line." />
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <meta property="og:title" content="CampusBite — Smart Eating for Campus Life" />
-  <meta property="og:description" content="CampusBite is coming to your campus. Join the waitlist to be first in line." />
-  <meta property="og:image" content="https://getcampusbite.com/preview.png" />
-  <meta property="og:url" content="https://getcampusbite.com" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CampusBite — Smart Eating for Campus Life" />
-  <meta name="twitter:description" content="CampusBite is coming to your campus. Join the waitlist to be first in line." />
-  <meta name="twitter:image" content="https://getcampusbite.com/preview.png" />
+  <title>CampusBite — Eat smart on campus</title>
+  <meta name="description" content="CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #17181a;
-      --ink-soft: #6b6d72;
-      --ink-faint: #a6a8ad;
-      --hairline: #e7e7ea;
-      --surface: #ffffff;
+      --primary: #16443a;
+      --primary-bg: #ccf0e4;
       --accent: #ff7a45;
-      --accent-dark: #e35f2b;
-      --radius-full: 999px;
-      --card-bg: #f8f8f7;
-      --forest: #16443a;
-      --forest-border: #37957f;
-      --forest-bg: #ebf9f4;
-      --mango-bg: #ffeed9;
-      --protein: #7c5cff;
-      --protein-bg: #f0ecff;
+      --accent-dark: #db5732;
+      --text: #1e1c1a;
+      --text-muted: #74716c;
+      --text-white: #ffffff;
+      --bg: #f0f0ef;
+      --bg-muted: #c9c7c4;
+      --mango-050: #fff8f0;
+      --white-bone: #fdf9f4;
+      --radius-full: 1000px;
     }
 
-    * {
-      font-family: 'DM Sans', sans-serif;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body { min-height: 100%; }
 
     body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 85% 10%, rgba(255, 122, 69, 0.07), transparent 45%),
-        radial-gradient(circle at 5% 90%, rgba(23, 24, 26, 0.04), transparent 50%),
-        var(--surface);
-      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      background: var(--mango-050);
+      color: var(--text);
     }
 
-    .hidden { display: none !important; }
+    .font-display { font-family: 'Satoshi Variable', 'Inter', sans-serif; }
 
-    /* Nav */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* Navbar */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 248, 240, 0.64);
+      backdrop-filter: blur(3px);
+      border-bottom: 1px solid var(--bg);
+      padding: 0 24px;
+    }
+
+    .navbar-holder {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 32px;
-    }
-
-    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 24px;
+      height: 80px;
     }
 
-    .brand img { width: 30px; height: auto; }
-
-    .brand span {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-cta {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: #fff;
-      background: var(--accent);
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
-    }
-
-    .nav-cta:hover { background: var(--accent-dark); }
-    .nav-cta:active { transform: scale(0.97); }
-
-    /* Hero */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
-      gap: 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 32px 96px;
-      min-height: calc(100vh - 88px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
+    .logo-holder {
+      display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-      background: rgba(255, 122, 69, 0.1);
-      border-radius: var(--radius-full);
-      padding: 7px 14px;
-      margin: 0 0 22px;
-      animation: floatUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      opacity: 0;
-      transform: translateY(10px);
+      width: 140px;
+      flex-shrink: 0;
     }
 
-    .eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-size: clamp(2.4rem, 4.2vw, 3.5rem);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin: 0 0 22px;
-      animation: floatUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    h1 .accent { color: var(--accent); }
-
-    .sub-text {
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      max-width: 30rem;
-      margin: 0 0 34px;
-      animation: floatUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.16s forwards;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .email-row {
-      animation: floatUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .field {
+    .logo-mark {
       display: flex;
       align-items: center;
-      gap: 6px;
-      width: 100%;
-      max-width: 24rem;
-      padding: 5px 5px 5px 18px;
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: var(--radius-full);
-      box-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px rgba(23, 24, 26, 0.05);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .field:focus-within {
-      border-color: #cfd0d4;
-      box-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px rgba(23, 24, 26, 0.08);
-    }
-
-    #email-input {
-      flex: 1;
-      min-width: 0;
-      font-size: 14.5px;
-      color: var(--ink);
-      background: transparent;
-      border: none;
-      padding: 9px 2px;
-    }
-
-    #email-input::placeholder { color: var(--ink-faint); }
-    #email-input:focus { outline: none; }
-
-    .submit-btn {
+      justify-content: center;
       flex-shrink: 0;
-      font-size: 13px;
-      font-weight: 500;
-      color: #fff;
-      background: var(--accent);
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 10px 18px;
+    }
+
+    .logo-mark img { width: 34px; height: 22.7px; display: block; }
+
+    .logo-word {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15.13px;
+      line-height: normal;
+      letter-spacing: 0;
+      color: var(--primary);
       white-space: nowrap;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
     }
 
-    .submit-btn:hover { background: var(--accent-dark); }
-    .submit-btn:active { transform: scale(0.97); }
-
-    .submit-btn:focus-visible,
-    #email-input:focus-visible,
-    .nav-cta:focus-visible {
-      outline: 2px solid #9599a1;
-      outline-offset: 2px;
-    }
-
-    #error-msg {
-      font-size: 12.5px;
-      color: #d64545;
-      margin: 10px 0 0;
-    }
-
-    .helper-text {
-      font-size: 12.5px;
-      color: var(--ink-faint);
-      margin: 10px 0 0;
-    }
-
-    .success-msg {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      animation: floatUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      opacity: 0;
-      transform: translateY(6px);
-    }
-
-    .success-icon {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 122, 69, 0.12);
+    nav.navlinks {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 32px;
     }
 
-    .success-title {
-      font-size: 15px;
+    nav.navlinks a {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
       font-weight: 500;
-      color: var(--ink);
-      margin: 0;
+      font-size: 14px;
+      line-height: 1.35;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
     }
 
-    .success-sub {
-      font-size: 13px;
-      color: var(--ink-faint);
-      margin: 2px 0 0;
-    }
+    nav.navlinks a:hover { color: var(--text); }
 
-    .mockup-slot {
-      display: flex;
+    .navbar-cta { width: 140px; display: flex; justify-content: flex-end; flex-shrink: 0; }
+
+    .btn-accent {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 24px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 2px rgba(255,122,69,0.02), 0 13px 5px rgba(255,122,69,0.04), 0 30px 12px rgba(255,122,69,0.05), 0 100px 40px rgba(255,122,69,0.07);
+      transition: background 0.15s ease, transform 0.15s ease;
     }
 
-    .mockup-slot img {
-      width: 100%;
-      max-width: 460px;
-      height: auto;
-    }
+    .btn-accent:hover { background: var(--accent-dark); }
+    .btn-accent:active { transform: scale(0.97); }
 
-    @keyframes floatUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 860px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 24px;
-        min-height: auto;
-      }
-      .mockup-slot { order: 1; max-width: 20rem; margin: 8px auto 0; }
-      .sub-text { max-width: none; }
-    }
-
-    /* Proof section */
-    .proof {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 88px 32px 0;
-      text-align: center;
+    /* Hero */
+    .hero-section {
+      padding: 144px 24px;
       overflow: hidden;
     }
 
-    .proof h2 {
-      font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
-      max-width: 56rem;
-      margin: 0 auto 18px;
-    }
-
-    .proof h2 .accent { color: var(--accent); }
-
-    .proof-sub {
-      font-size: 15px;
-      color: var(--ink-soft);
-      margin: 0 0 22px;
-    }
-
-    .proof-stage {
-      position: relative;
-      width: 100%;
+    .hero-holder {
       max-width: 1200px;
-      aspect-ratio: 1200 / 608;
-      margin: 0 auto 88px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
-    .logo-badge {
-      position: absolute;
-      aspect-ratio: 1 / 1;
+    .hero-copy {
+      flex: 1 0 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text-white);
+      border: 1px solid var(--bg);
+      border-radius: var(--radius-full);
+      padding: 8px 12px;
+    }
+
+    .pill-badge .pulse-dot {
+      width: 16px;
+      height: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ebf9f4;
-      border: 1px solid #ccf0e4;
-      border-radius: 10px;
-      box-shadow: 0 16px 32px rgba(23, 24, 26, 0.1);
-      animation: floatBadge 4.5s ease-in-out infinite;
     }
 
-    .logo-badge img {
-      width: 58%;
-      height: auto;
-      object-fit: contain;
+    .pill-badge .pulse-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,122,69,0.18);
     }
 
-    .badge-fiu       { left: 23.083%; top: 1.475%; width: 11.917%; animation-delay: 0s; }
-    .badge-stanford  { left: 17.167%; top: 37.99%; width: 11.917%; animation-delay: 0.6s; }
-    .badge-minnesota { left: 23.083%; top: 74.5%;  width: 11.917%; animation-delay: 1.2s; }
-    .badge-miami     { left: 64.917%; top: 1.475%; width: 11.889%; animation-delay: 0.3s; }
-    .badge-tamu      { left: 70.861%; top: 37.99%; width: 11.889%; animation-delay: 0.9s; }
-    .badge-nyu       { left: 64.917%; top: 74.5%;  width: 11.889%; animation-delay: 1.5s; }
-
-    @keyframes floatBadge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .pill-badge span {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent-dark);
+      white-space: nowrap;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .logo-badge { animation: none; }
+    .headline-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 8px 0;
     }
 
-    .proof-phone {
-      position: absolute;
-      left: 38.33%;
-      top: 0;
-      width: 23.258%;
-      aspect-ratio: 279.1 / 607.4;
+    h1.hero-h1 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      letter-spacing: -1.6px;
+      color: var(--text);
     }
 
-    .proof-phone img {
+    h1.hero-h1 .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 46rem;
+    }
+
+    .store-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      height: 52px;
+      width: 180px;
+      text-decoration: none;
+    }
+
+    .store-badge img { width: 100%; height: 100%; display: block; }
+
+    .stats-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    .stat-track {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 168px;
+    }
+
+    .stat-number {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 1.35;
+      color: #000000;
+      white-space: nowrap;
+    }
+
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.1;
+      color: var(--text-muted);
+    }
+
+    /* Hero image */
+    .hero-image {
+      flex: 1 0 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 28px 48px rgba(23, 24, 26, 0.18));
+      height: auto;
     }
 
-    @media (max-width: 860px) {
-      .proof { padding-top: 64px; }
-      .proof-stage {
-        aspect-ratio: auto;
-        margin-bottom: 56px;
-        display: flex;
-        justify-content: center;
-      }
-      .badge-fiu, .badge-stanford, .badge-minnesota,
-      .badge-miami, .badge-tamu, .badge-nyu { display: none; }
-      .proof-phone {
-        position: static;
-        width: 190px;
-        aspect-ratio: 279.1 / 607.4;
-      }
-    }
-
-    /* Features section */
-    .features {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 96px 32px 120px;
+    /* Campus bar */
+    .campus-bar {
+      background: var(--white-bone);
+      border-top: 1px solid var(--bg-muted);
+      border-bottom: 1px solid var(--bg-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 32px 24px;
       text-align: center;
     }
 
-    .features h2 {
-      font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+    .campus-bar p.eyebrow-line {
       font-weight: 600;
-      letter-spacing: -1.68px;
-      line-height: 1.1;
-      max-width: 44rem;
-      margin: 0 auto 56px;
+      font-size: 16px;
+      color: var(--text-muted);
     }
 
-    .features h2 .accent { color: var(--accent); }
+    .campus-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text-muted);
+    }
+
+    /* Features */
+    .features-section {
+      padding: 96px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .features-intro {
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .features-intro h2 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      color: var(--text);
+    }
+
+    .features-intro .features-sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: 0;
+      color: var(--text-muted);
+    }
 
     .features-grid {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .feature-card {
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 250px;
+    }
+
+    .feature-card.card-menus { grid-column: 1 / 3; grid-row: 1; background: var(--primary); }
+    .feature-card.card-goals { grid-column: 3; grid-row: 1; background: var(--text-white); border: 1px solid var(--bg); }
+    .feature-card.card-logging { grid-column: 1; grid-row: 2 / 4; background: var(--accent); position: relative; }
+    .feature-card.card-diet { grid-column: 2; grid-row: 2; background: var(--text-white); border: 1px solid var(--bg); }
+    .feature-card.card-progress { grid-column: 3; grid-row: 2; background: var(--text-white); border: 1px solid var(--bg); }
+    .feature-card.card-image { grid-column: 2 / 4; grid-row: 3; background: var(--mango-050); padding: 0; overflow: hidden; }
+    .feature-card.card-image img { width: 100%; height: auto; display: block; }
+
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feature-tag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0;
+      color: var(--primary);
+      background: var(--primary-bg);
+      border-radius: var(--radius-full);
+      padding: 4px 10px;
+    }
+
+    .feature-card.card-logging .feature-tap {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 1;
+      color: var(--text-white);
+      margin-top: auto;
+    }
+
+    .feature-eyebrow {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .feature-title {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .feature-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    .feature-card.card-menus .feature-eyebrow,
+    .feature-card.card-logging .feature-eyebrow { color: var(--primary-bg); }
+    .feature-card.card-goals .feature-eyebrow,
+    .feature-card.card-diet .feature-eyebrow,
+    .feature-card.card-progress .feature-eyebrow { color: var(--accent); }
+    .feature-card.card-logging .feature-eyebrow { color: var(--text-white); }
+
+    .feature-card.card-menus .feature-title,
+    .feature-card.card-logging .feature-title { color: var(--text-white); }
+    .feature-card.card-goals .feature-title,
+    .feature-card.card-diet .feature-title,
+    .feature-card.card-progress .feature-title { color: var(--text); }
+
+    .feature-card.card-menus .feature-desc,
+    .feature-card.card-logging .feature-desc { color: var(--bg); }
+    .feature-card.card-goals .feature-desc,
+    .feature-card.card-diet .feature-desc,
+    .feature-card.card-progress .feature-desc { color: var(--text-muted); }
+
+    /* Action */
+    .action-section {
+      padding: 96px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .action-scroll {
+      position: relative;
+      max-width: 1200px;
+      width: 100%;
+      margin-top: 80px;
+    }
+
+    .action-sticky {
+      position: sticky;
+      top: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      padding: 40px 0;
+    }
+
+    .action-trigger {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .action-phone {
+      width: 588px;
+      flex-shrink: 0;
+      position: relative;
+      aspect-ratio: 588 / 520;
+    }
+
+    .action-phone-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .action-phone-img.is-active { opacity: 1; }
+
+    .action-content {
+      width: 480px;
+      flex-shrink: 0;
+      position: relative;
+      min-height: 220px;
+    }
+
+    .action-step-block {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .action-step-block.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .action-step {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0;
+      color: var(--accent);
+    }
+
+    .action-content h3 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      color: var(--text);
+    }
+
+    .action-content p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Steps */
+    .steps-section {
+      padding: 96px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .steps-grid {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 64px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       text-align: left;
     }
 
-    .feature-card {
-      position: relative;
+    .step-card {
+      background: var(--text-white);
+      border: 1px solid var(--bg);
+      border-radius: 24px;
+      padding: 32px;
       display: flex;
       flex-direction: column;
-      background: var(--card-bg);
-      border: 1px solid var(--hairline);
-      border-radius: 14px;
-      padding: 28px 20px 24px;
-      min-height: 289px;
-      overflow: hidden;
-      box-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px rgba(23, 24, 26, 0.05);
-      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 8px rgba(23, 24, 26, 0.06), 0 24px 40px rgba(23, 24, 26, 0.1);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      filter: blur(30px);
-      pointer-events: none;
-    }
-
-    .features-grid .feature-card:nth-child(1)::before { background: radial-gradient(circle, rgba(55, 149, 127, 0.18), transparent 70%); }
-    .features-grid .feature-card:nth-child(2)::before { background: radial-gradient(circle, rgba(124, 92, 255, 0.14), transparent 70%); }
-    .features-grid .feature-card:nth-child(3)::before { background: radial-gradient(circle, rgba(255, 122, 69, 0.18), transparent 70%); }
-
-    .card-icon {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-    }
-
-    .card-icon.forest { background: var(--forest-bg); }
-    .card-icon.protein { background: var(--protein-bg); }
-    .card-icon.mango { background: var(--mango-bg); }
-
-    .feature-card h3 {
-      position: relative;
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: -1.68px;
-      margin: 0 0 8px;
-    }
-
-    .feature-card .feature-sub {
-      position: relative;
-      font-size: 16px;
-      line-height: 1.4;
-      color: var(--ink-soft);
-      margin: 0;
-    }
-
-    /* Card 1 — meal suggestions */
-    .meal-shuffle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: auto 0 14px;
-      padding-top: 24px;
-    }
-
-    .meal-shuffle span {
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .shuffle-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--forest);
-    }
-
-    .meal-list {
-      display: flex;
-      gap: 12px;
-    }
-
-    .meal-item {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px;
-      border: 1px solid var(--hairline);
-      border-radius: 10px;
-    }
-
-    .meal-item.is-selected {
-      background: var(--forest-bg);
-      border-color: var(--forest-border);
-    }
-
-    .meal-thumb {
-      width: 100%;
-      height: 64px;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .meal-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .meal-name {
-      font-size: 12px;
-      font-weight: 700;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .meal-cal {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--accent-dark);
-    }
-
-    /* Card 2 — nutrition breakdown */
-    .nutrition-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-top: auto;
-      padding-top: 24px;
-    }
-
-    .stat {
-      display: flex;
-      align-items: center;
       gap: 16px;
     }
 
-    .stat-label {
-      flex-shrink: 0;
-      width: 84px;
-    }
-
-    .stat-value {
-      font-size: 18px;
+    .step-number {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-bg);
+      color: var(--primary);
+      border-radius: 10px;
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
       font-weight: 700;
-      line-height: 1.2;
-      margin: 0;
+      font-size: 18px;
     }
 
-    .stat-sub {
-      font-size: 12px;
-      line-height: 1.2;
-      color: var(--ink-soft);
-      margin: 2px 0 0;
+    .step-card h3 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      color: var(--text);
     }
 
-    .stat-bar {
-      flex: 1;
-      height: 14px;
-      border-radius: var(--radius-full);
-      background: rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+    .step-card p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-muted);
     }
 
-    .stat-bar-fill {
-      height: 100%;
-      border-radius: var(--radius-full);
-      background: var(--ink);
-    }
-
-    .stat-bar-fill.carbs { background: var(--accent); }
-    .stat-bar-fill.fats { background: var(--forest); }
-    .stat-bar-fill.protein { background: var(--protein); }
-
-    /* Card 3 — calorie ring */
-    .calorie-ring {
-      position: relative;
-      width: 216px;
-      height: 216px;
-      margin: auto;
-    }
-
-    .calorie-ring img {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 10px 20px rgba(23, 24, 26, 0.1));
-    }
-
-    .ring-center {
-      position: absolute;
-      inset: 0;
+    /* Testimonials */
+    .testimonials-section {
+      padding: 96px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      text-align: center;
+    }
+
+    .testimonials-grid {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+
+    .testimonial-card {
+      background: var(--text-white);
+      border: 1px solid var(--bg);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .testimonial-stars {
+      display: flex;
       gap: 4px;
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1;
     }
 
-    .ring-number {
+    .testimonial-card p.testimonial-quote {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .testimonial-person {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 32px;
-      font-weight: 600;
+      gap: 12px;
+      margin-top: auto;
     }
 
-    .ring-fire {
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      background: var(--mango-bg);
-      box-shadow: 0 2px 6px rgba(255, 122, 69, 0.25);
+      background: var(--primary-bg);
+      color: var(--primary);
+      border-radius: 50%;
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
     }
 
-    .ring-label {
+    .testimonial-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Dining CTA */
+    .dining-section {
+      padding: 96px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dining-card {
+      width: 100%;
+      max-width: 1200px;
+      background: var(--text-white);
+      border-radius: 32px;
+      box-shadow: 0 30px 60px rgba(30,28,26,0.06);
+      padding: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .dining-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .dining-copy h2 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      color: var(--text);
+    }
+
+    .dining-copy p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      max-width: 34rem;
+    }
+
+    .dining-card .btn-accent {
+      flex-shrink: 0;
+      font-size: 16px;
+      padding: 14px 22px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 96px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .faq-list {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .faq-item {
+      background: var(--text-white);
+      border: 1px solid var(--bg);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 32px 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      color: var(--text);
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-icon::before { width: 16px; height: 2px; top: 11px; left: 4px; }
+    .faq-icon::after { width: 2px; height: 16px; top: 4px; left: 11px; }
+
+    .faq-item.is-open .faq-icon::after { transform: scaleY(0); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 40px;
+    }
+
+    .faq-answer p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .faq-item.is-open .faq-answer {
+      max-height: 300px;
+      padding: 0 40px 32px;
+    }
+
+    /* Closing CTA */
+    .cta-section {
+      padding: 96px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cta-card {
+      width: 100%;
+      max-width: 1200px;
+      background: linear-gradient(135deg, #1c5c47 0%, var(--primary) 100%);
+      border-radius: 32px;
+      padding: 80px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .cta-card h2 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: 0;
+      color: var(--text-white);
+    }
+
+    .cta-card p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .cta-card .store-row { margin-top: 8px; }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--primary);
+      padding: 64px 24px 32px;
+    }
+
+    .footer-holder {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 340px;
+    }
+
+    .footer-brand .logo-holder { width: auto; }
+    .footer-brand .logo-mark img { filter: brightness(0) invert(1); }
+    .footer-brand .logo-word { color: var(--text-white); }
+
+    .footer-brand p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .footer-columns {
+      display: flex;
+      gap: 80px;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-column h4 {
+      font-family: 'Satoshi Variable', 'Inter', sans-serif;
+      font-weight: 700;
       font-size: 14px;
-      margin: 0;
+      letter-spacing: 0.02em;
+      color: var(--text-white);
+      text-transform: uppercase;
     }
 
-    @media (max-width: 860px) {
-      .features { padding: 64px 32px 80px; }
-      .features-grid { grid-template-columns: 1fr; gap: 20px; }
-      .feature-card { min-height: 0; }
+    .footer-column a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-column a:hover { color: var(--text-white); }
+
+    .footer-divider {
+      margin: 48px 0 24px;
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      h1.hero-h1 { font-size: 52px; }
+      .hero-sub { font-size: 18px; }
+      .hero-holder { flex-direction: column; }
+      .hero-image { width: 100%; max-width: 380px; aspect-ratio: 1; }
+      .stats-row { flex-wrap: wrap; }
+      nav.navlinks { display: none; }
+      .campus-list { gap: 32px; }
+      .action-scroll { height: auto !important; }
+      .action-trigger { display: none; }
+      .action-sticky {
+        position: static;
+        flex-direction: column;
+        gap: 48px;
+        padding: 0;
+      }
+      .action-phone { width: 100%; max-width: 340px; }
+      .action-content { width: 100%; position: static; min-height: 0; }
+      .action-step-block {
+        position: static;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .action-step-block:not(.is-active) { display: none; }
+      .action-phone-img { position: static; opacity: 1; }
+      .action-phone-img:not(.is-active) { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card.card-menus,
+      .feature-card.card-goals,
+      .feature-card.card-logging,
+      .feature-card.card-diet,
+      .feature-card.card-progress { grid-column: 1; grid-row: auto; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .dining-card { flex-direction: column; align-items: flex-start; padding: 40px; }
+      .dining-copy h2 { font-size: 36px; }
+      .footer-top { flex-direction: column; gap: 40px; }
+      .footer-brand { max-width: none; }
+      .footer-columns { gap: 40px; flex-wrap: wrap; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section { padding: 96px 16px; }
+      h1.hero-h1 { font-size: 38px; }
+      .store-row { flex-wrap: wrap; }
+      .navbar-cta { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="brand">
-      <img src="logo.png" alt="CampusBite logo" />
-      <span>CampusBite</span>
-    </div>
-    <button type="button" class="nav-cta" onclick="document.getElementById('email-input').focus()">
-      Join Waitlist
-    </button>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Coming to your campus</span>
-
-      <h1>Smart eating for <span class="accent">campus life.</span></h1>
-
-      <p class="sub-text">
-        CampusBite helps students find, order, and split meals across campus dining and nearby restaurants — all in one app. Join the waitlist to be first in line when we launch.
-      </p>
-
-      <div class="email-row" id="form-area">
-        <div class="field">
-          <input
-            id="email-input"
-            type="email"
-            placeholder="your@school.edu"
-            autocomplete="email"
-          />
-          <button type="button" onclick="handleSubmit()" class="submit-btn">
-            Notify me
-          </button>
+  <header class="navbar">
+    <div class="navbar-holder">
+      <div class="logo-holder">
+        <div class="logo-mark">
+          <img src="logo.svg" alt="CampusBite logo" />
         </div>
-        <p id="error-msg" class="hidden">Please enter a valid email.</p>
-        <p class="helper-text">No spam. Just a heads up when we launch.</p>
+        <span class="logo-word">CampusBite</span>
       </div>
-
-      <div id="success-area" class="hidden">
-        <div class="success-msg">
-          <div class="success-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8L6.5 11.5L13 5" stroke="#ff7a45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <p class="success-title">You're on the list.</p>
-            <p class="success-sub">We'll email you when CampusBite launches.</p>
-          </div>
-        </div>
+      <nav class="navlinks">
+        <a href="#top">Home</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#about">About</a>
+        <a href="#for-campuses">For campuses</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="navbar-cta">
+        <a href="#download" class="btn-accent">Get the app</a>
       </div>
     </div>
+  </header>
 
-    <div class="mockup-slot">
-      <img src="phones.png" alt="CampusBite app preview" />
-    </div>
-  </section>
+  <section class="hero-section" id="top">
+    <div class="hero-holder">
+      <div class="hero-copy">
+        <div class="pill-badge">
+          <span class="pulse-dot"></span>
+          <span>NOW ON IOS &amp; ANDROID</span>
+        </div>
 
-  <section class="proof">
-    <div class="proof-head">
-      <h2>Smart eating for every student, at <span class="accent">250+ campuses</span> across the USA & Canada.</h2>
-      <p class="proof-sub">Used by students to eat smarter, together.</p>
-    </div>
+        <div class="headline-block">
+          <h1 class="hero-h1 font-display">Eat smart on <span class="accent">campus.</span></h1>
+          <p class="hero-sub">CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan.</p>
+        </div>
 
-    <div class="proof-stage">
-      <div class="logo-badge badge-fiu"><img src="logos/fiu.png" alt="FIU logo" /></div>
-      <div class="logo-badge badge-stanford"><img src="logos/stanford.png" alt="Stanford logo" /></div>
-      <div class="logo-badge badge-minnesota"><img src="logos/minnesota.png" alt="University of Minnesota logo" /></div>
-      <div class="logo-badge badge-miami"><img src="logos/miami.png" alt="Miami logo" /></div>
-      <div class="logo-badge badge-tamu"><img src="logos/tamu.png" alt="Texas A&M logo" /></div>
-      <div class="logo-badge badge-nyu"><img src="logos/nyu.png" alt="NYU logo" /></div>
+        <div class="store-row">
+          <a href="#" class="store-badge" aria-label="Download on the App Store">
+            <img src="App Store.svg" alt="Download on the App Store" />
+          </a>
+          <a href="#" class="store-badge" aria-label="Get it on Google Play">
+            <img src="Google Play.svg" alt="Get it on Google Play" />
+          </a>
+        </div>
 
-      <div class="proof-phone">
-        <img src="iphone_mockup.png" alt="CampusBite app preview" />
+        <div class="stats-row">
+          <div class="stat-track">
+            <p class="stat-number">250+</p>
+            <p class="stat-label">campuses rolling out</p>
+          </div>
+          <div class="stat-track">
+            <p class="stat-number">38K+</p>
+            <p class="stat-label">meals logged</p>
+          </div>
+          <div class="stat-track">
+            <p class="stat-number">4.8</p>
+            <p class="stat-label">average rating</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="hero-image.png" alt="CampusBite app on two phones" />
       </div>
     </div>
   </section>
 
-  <section class="features">
-    <h2>Everything you need to eat <span class="accent">smarter</span> on campus.</h2>
+  <section class="campus-bar">
+    <p class="eyebrow-line">COMING TO DINING HALLS AT CAMPUSES ACROSS THE U.S.</p>
+    <div class="campus-list">
+      <span>FIU</span>
+      <span>Miami</span>
+      <span>NYU</span>
+      <span>Stanford</span>
+    </div>
+  </section>
+
+  <section class="features-section" id="how-it-works">
+    <div class="features-intro">
+      <div class="pill-badge">
+        <span class="pulse-dot"></span>
+        <span>WHY CAMPUSBITE</span>
+      </div>
+      <h2 class="font-display">Everything you need to eat well on campus</h2>
+      <p class="features-sub">Built around the food that's already on your meal plan — not a generic diet app.</p>
+    </div>
 
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="card-icon forest">
-          <svg width="20" height="19" viewBox="0 0 12 11" fill="none" aria-hidden="true">
-            <path d="M11.8103 1.53071V4.15571C11.8103 4.32976 11.7412 4.49668 11.6181 4.61975C11.4951 4.74282 11.3281 4.81196 11.1541 4.81196H8.5291C8.35505 4.81196 8.18813 4.74282 8.06506 4.61975C7.94199 4.49668 7.87285 4.32976 7.87285 4.15571C7.87285 3.98166 7.94199 3.81474 8.06506 3.69167C8.18813 3.5686 8.35505 3.49946 8.5291 3.49946H9.46425L8.42519 2.54899C8.41808 2.54243 8.41097 2.53586 8.40441 2.52875C7.92262 2.04726 7.32988 1.69156 6.67834 1.49294C6.0268 1.29432 5.33644 1.25888 4.66798 1.38972C3.99953 1.52057 3.37347 1.8137 2.84491 2.24332C2.31634 2.67294 1.90147 3.22588 1.63678 3.85349C1.3721 4.4811 1.26572 5.16414 1.327 5.84252C1.38829 6.5209 1.61536 7.17382 1.98824 7.74383C2.36112 8.31384 2.86837 8.78348 3.46538 9.11141C4.06238 9.43934 4.73083 9.61553 5.41191 9.62446H5.4666C6.52749 9.62701 7.54869 9.22127 8.31855 8.49133C8.4451 8.37175 8.61397 8.30733 8.78801 8.31225C8.96205 8.31717 9.12701 8.39103 9.2466 8.51758C9.36618 8.64413 9.4306 8.813 9.42568 8.98704C9.42075 9.16108 9.3469 9.32604 9.22035 9.44563C8.20693 10.4062 6.86289 10.9401 5.4666 10.937H5.39168C4.49647 10.9243 3.61805 10.6921 2.83355 10.2607C2.04905 9.8293 1.38246 9.21188 0.892325 8.46267C0.402186 7.71346 0.103485 6.85536 0.0224489 5.96374C-0.0585869 5.07212 0.0805214 4.17424 0.427559 3.34894C0.774597 2.52364 1.31895 1.79616 2.01282 1.23038C2.70669 0.664607 3.52885 0.277838 4.40712 0.104036C5.28538 -0.0697656 6.19289 -0.0252839 7.04994 0.233575C7.907 0.492435 8.6874 0.957755 9.32261 1.58868L10.4978 2.66383V1.53071C10.4978 1.35666 10.567 1.18974 10.6901 1.06667C10.8131 0.943598 10.98 0.874457 11.1541 0.874457C11.3281 0.874457 11.4951 0.943598 11.6181 1.06667C11.7412 1.18974 11.8103 1.35666 11.8103 1.53071Z" fill="#16443A"/>
-          </svg>
-        </div>
-        <h3>Smart Meal Suggestions</h3>
-        <p class="feature-sub">Not feeling it? Shuffle for something else.</p>
-
-        <div class="meal-shuffle">
-          <span>Not Feeling it?</span>
-          <button type="button" class="shuffle-btn">
-            <svg width="14" height="14" viewBox="0 0 12 11" fill="none" aria-hidden="true">
-              <path d="M11.8103 1.53071V4.15571C11.8103 4.32976 11.7412 4.49668 11.6181 4.61975C11.4951 4.74282 11.3281 4.81196 11.1541 4.81196H8.5291C8.35505 4.81196 8.18813 4.74282 8.06506 4.61975C7.94199 4.49668 7.87285 4.32976 7.87285 4.15571C7.87285 3.98166 7.94199 3.81474 8.06506 3.69167C8.18813 3.5686 8.35505 3.49946 8.5291 3.49946H9.46425L8.42519 2.54899C8.41808 2.54243 8.41097 2.53586 8.40441 2.52875C7.92262 2.04726 7.32988 1.69156 6.67834 1.49294C6.0268 1.29432 5.33644 1.25888 4.66798 1.38972C3.99953 1.52057 3.37347 1.8137 2.84491 2.24332C2.31634 2.67294 1.90147 3.22588 1.63678 3.85349C1.3721 4.4811 1.26572 5.16414 1.327 5.84252C1.38829 6.5209 1.61536 7.17382 1.98824 7.74383C2.36112 8.31384 2.86837 8.78348 3.46538 9.11141C4.06238 9.43934 4.73083 9.61553 5.41191 9.62446H5.4666C6.52749 9.62701 7.54869 9.22127 8.31855 8.49133C8.4451 8.37175 8.61397 8.30733 8.78801 8.31225C8.96205 8.31717 9.12701 8.39103 9.2466 8.51758C9.36618 8.64413 9.4306 8.813 9.42568 8.98704C9.42075 9.16108 9.3469 9.32604 9.22035 9.44563C8.20693 10.4062 6.86289 10.9401 5.4666 10.937H5.39168C4.49647 10.9243 3.61805 10.6921 2.83355 10.2607C2.04905 9.8293 1.38246 9.21188 0.892325 8.46267C0.402186 7.71346 0.103485 6.85536 0.0224489 5.96374C-0.0585869 5.07212 0.0805214 4.17424 0.427559 3.34894C0.774597 2.52364 1.31895 1.79616 2.01282 1.23038C2.70669 0.664607 3.52885 0.277838 4.40712 0.104036C5.28538 -0.0697656 6.19289 -0.0252839 7.04994 0.233575C7.907 0.492435 8.6874 0.957755 9.32261 1.58868L10.4978 2.66383V1.53071C10.4978 1.35666 10.567 1.18974 10.6901 1.06667C10.8131 0.943598 10.98 0.874457 11.1541 0.874457C11.3281 0.874457 11.4951 0.943598 11.6181 1.06667C11.7412 1.18974 11.8103 1.35666 11.8103 1.53071Z" fill="#16443A"/>
-            </svg>
-            Shuffle
-          </button>
-        </div>
-
-        <div class="meal-list">
-          <div class="meal-item is-selected">
-            <div class="meal-thumb"><img src="features/food-tacos.png" alt="Eggs & oatmeal" /></div>
-            <p class="meal-name">Eggs & oatmeal</p>
-            <div class="meal-cal">
-              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
-                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
-              </svg>
-              500
-            </div>
-          </div>
-          <div class="meal-item">
-            <div class="meal-thumb"><img src="features/food-yogurt.jpeg" alt="Greek yogurt" /></div>
-            <p class="meal-name">Greek yogurt</p>
-            <div class="meal-cal">
-              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
-                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
-              </svg>
-              500
-            </div>
-          </div>
-          <div class="meal-item">
-            <div class="meal-thumb"><img src="features/food-tacos.png" alt="Eggs & oatmeal" /></div>
-            <p class="meal-name">Eggs & oatmeal</p>
-            <div class="meal-cal">
-              <svg width="12" height="12" viewBox="0 0 9 11" fill="none" aria-hidden="true">
-                <path d="M4.84594 0.0866429C4.79971 0.0482088 4.74492 0.0214524 4.68618 0.00862948C4.62745 -0.00419343 4.56649 -0.00270701 4.50845 0.0129634C4.45041 0.0286338 4.39699 0.0580289 4.35269 0.0986704C4.30839 0.139312 4.27451 0.190009 4.25391 0.246487L3.22266 3.07821L2.09016 1.98086C2.05212 1.94397 2.00671 1.91556 1.95689 1.8975C1.90708 1.87944 1.85401 1.87214 1.80117 1.87609C1.74834 1.88003 1.69694 1.89512 1.65036 1.92037C1.60378 1.94562 1.56308 1.98046 1.53094 2.02258C0.515625 3.35289 0 4.69117 0 5.99992C0 7.09394 0.434597 8.14315 1.20818 8.91674C1.98177 9.69033 3.03098 10.1249 4.125 10.1249C5.21902 10.1249 6.26823 9.69033 7.04182 8.91674C7.8154 8.14315 8.25 7.09394 8.25 5.99992C8.25 3.21321 5.86922 0.937424 4.84594 0.0866429ZM6.74484 6.43774C6.64761 6.98088 6.38629 7.48119 5.99608 7.87132C5.60588 8.26144 5.10551 8.52265 4.56234 8.61977C4.54175 8.6233 4.52089 8.62502 4.5 8.62492C4.40593 8.6249 4.31531 8.58952 4.24611 8.52581C4.17691 8.4621 4.13417 8.37471 4.12638 8.28097C4.1186 8.18723 4.14632 8.09398 4.20407 8.01972C4.26181 7.94547 4.34535 7.89563 4.43812 7.88008C5.21484 7.7493 5.87391 7.09024 6.00562 6.31211C6.02228 6.21402 6.07723 6.12657 6.15836 6.06899C6.2395 6.01141 6.34019 5.98842 6.43828 6.00508C6.53637 6.02174 6.62382 6.07668 6.6814 6.15782C6.73898 6.23896 6.76197 6.33965 6.74531 6.43774H6.74484Z" fill="#FF7A45"/>
-              </svg>
-              500
-            </div>
-          </div>
+      <div class="feature-card card-menus">
+        <span class="feature-eyebrow">MENUS</span>
+        <h3 class="feature-title">Every dining hall, decoded</h3>
+        <p class="feature-desc">See today's menu at every dining hall, filtered to your diet, with allergen flags.</p>
+      </div>
+      <div class="feature-card card-goals">
+        <span class="feature-eyebrow">GOALS</span>
+        <h3 class="feature-title">Targets built for you</h3>
+        <p class="feature-desc">Personalized calories &amp; macros from your body and goals.</p>
+      </div>
+      <div class="feature-card card-logging">
+        <span class="feature-eyebrow">LOGGING</span>
+        <h3 class="feature-title">Log a day in seconds</h3>
+        <p class="feature-desc">Swipe to log breakfast, lunch, and dinner. It adds up on its own.</p>
+        <span class="feature-tap">1-tap</span>
+      </div>
+      <div class="feature-card card-diet">
+        <span class="feature-eyebrow">DIET</span>
+        <h3 class="feature-title">Fits your restrictions</h3>
+        <div class="feature-tags">
+          <span class="feature-tag">VEGAN</span>
+          <span class="feature-tag">GLUTEN-FREE</span>
+          <span class="feature-tag">HALAL</span>
+          <span class="feature-tag">ALLERGIES</span>
         </div>
       </div>
-
-      <div class="feature-card">
-        <div class="card-icon protein">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <rect x="2" y="10" width="4" height="8" rx="1" fill="#7C5CFF"/>
-            <rect x="8" y="5" width="4" height="13" rx="1" fill="#7C5CFF"/>
-            <rect x="14" y="2" width="4" height="16" rx="1" fill="#7C5CFF"/>
-          </svg>
-        </div>
-        <h3>Full Nutrition Breakdown</h3>
-        <p class="feature-sub">Calories, protein, carbs, fat — auto-tracked per meal.</p>
-
-        <div class="nutrition-stats">
-          <div class="stat">
-            <div class="stat-label">
-              <p class="stat-value">118g</p>
-              <p class="stat-sub">Carbs left</p>
-            </div>
-            <div class="stat-bar"><div class="stat-bar-fill carbs" style="width: 65%"></div></div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">
-              <p class="stat-value">118g</p>
-              <p class="stat-sub">Fats left</p>
-            </div>
-            <div class="stat-bar"><div class="stat-bar-fill fats" style="width: 42%"></div></div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">
-              <p class="stat-value">118g</p>
-              <p class="stat-sub">Proteins left</p>
-            </div>
-            <div class="stat-bar"><div class="stat-bar-fill protein" style="width: 80%"></div></div>
-          </div>
-        </div>
+      <div class="feature-card card-progress">
+        <span class="feature-eyebrow">PROGRESS</span>
+        <h3 class="feature-title">Streaks &amp; trends</h3>
+        <p class="feature-desc">Weekly recaps that keep you going.</p>
       </div>
+      <div class="feature-card card-image">
+        <img src="Card-Feature.png" alt="CampusBite app logging a meal" />
+      </div>
+    </div>
+  </section>
 
-      <div class="feature-card">
-        <div class="card-icon mango">
-          <svg width="18" height="21" viewBox="0 0 14 17" fill="none" aria-hidden="true">
-            <path d="M8.07656 0.144405C7.99952 0.080348 7.9082 0.035754 7.81031 0.0143825C7.71241 -0.00698905 7.61082 -0.00451168 7.51408 0.0216057C7.41735 0.047723 7.32831 0.0967148 7.25448 0.164451C7.18065 0.232187 7.12418 0.316681 7.08984 0.410811L5.37109 5.13034L3.48359 3.30144C3.42021 3.23995 3.34451 3.1926 3.26149 3.1625C3.17847 3.1324 3.09002 3.12024 3.00196 3.12681C2.9139 3.13338 2.82823 3.15853 2.75059 3.20062C0.859375 5.58815 0 7.81862 0 9.99987C0 11.8232 0.724328 13.5719 2.01364 14.8612C3.30295 16.1505 5.05164 16.8749 6.875 16.8749C8.69836 16.8749 10.447 16.1505 11.7364 14.8612C13.0257 13.5719 13.75 11.8232 13.75 9.99987C13.75 5.35534 9.78203 1.56237 8.07656 0.144405ZM11.2414 10.7296C11.0793 11.6348 10.6438 12.4687 9.99347 13.1189C9.34313 13.7691 8.50918 14.2044 7.60391 14.3663C7.56959 14.3722 7.53482 14.375 7.5 14.3749C7.34322 14.3748 7.19219 14.3159 7.07685 14.2097C6.96151 14.1035 6.89029 13.9579 6.87731 13.8016C6.86433 13.6454 6.91054 13.49 7.00678 13.3662C7.10302 13.2424 7.24225 13.1594 7.39687 13.1335C8.69141 12.9155 9.78984 11.8171 10.0094 10.5202C10.0371 10.3567 10.1287 10.2109 10.2639 10.115C10.3992 10.019 10.567 9.9807 10.7305 10.0085C10.894 10.0362 11.0397 10.1278 11.1357 10.263C11.2316 10.3983 11.27 10.5661 11.2422 10.7296H11.2414Z" fill="#FF7A45"/>
-          </svg>
+  <section class="action-section">
+    <div class="features-intro">
+      <div class="pill-badge">
+        <span class="pulse-dot"></span>
+        <span>SEE IT IN ACTION</span>
+      </div>
+      <h2 class="font-display">Your whole day, one screen at a time</h2>
+    </div>
+
+    <div class="action-scroll">
+      <div class="action-trigger" data-step="0"></div>
+      <div class="action-trigger" data-step="1"></div>
+      <div class="action-trigger" data-step="2"></div>
+      <div class="action-trigger" data-step="3"></div>
+      <div class="action-sticky">
+        <div class="action-phone">
+          <img class="action-phone-img is-active" data-step="0" src="phone.png" alt="CampusBite calorie tracking screen" />
+          <img class="action-phone-img" data-step="1" src="phone (1).png" alt="CampusBite dining hall menu screen" />
+          <img class="action-phone-img" data-step="2" src="phone (2).png" alt="CampusBite meal logging screen" />
+          <img class="action-phone-img" data-step="3" src="phone (3).png" alt="CampusBite profile and trends screen" />
         </div>
-        <h3>Daily Calorie Ring</h3>
-        <p class="feature-sub">450 calories left</p>
-
-        <div class="calorie-ring">
-          <img src="features/icon-graph.svg" alt="" aria-hidden="true" />
-          <div class="ring-center">
-            <div class="ring-number">
-              450
-              <span class="ring-fire">
-                <svg width="20" height="19" viewBox="0 0 21 19" fill="none" aria-hidden="true">
-                  <path d="M8.07656 0.144405C7.99952 0.080348 7.9082 0.035754 7.81031 0.0143825C7.71241 -0.00698905 7.61082 -0.00451168 7.51408 0.0216057C7.41735 0.047723 7.32831 0.0967148 7.25448 0.164451C7.18065 0.232187 7.12418 0.316681 7.08984 0.410811L5.37109 5.13034L3.48359 3.30144C3.42021 3.23995 3.34451 3.1926 3.26149 3.1625C3.17847 3.1324 3.09002 3.12024 3.00196 3.12681C2.9139 3.13338 2.82823 3.15853 2.75059 3.20062C0.859375 5.58815 0 7.81862 0 9.99987C0 11.8232 0.724328 13.5719 2.01364 14.8612C3.30295 16.1505 5.05164 16.8749 6.875 16.8749C8.69836 16.8749 10.447 16.1505 11.7364 14.8612C13.0257 13.5719 13.75 11.8232 13.75 9.99987C13.75 5.35534 9.78203 1.56237 8.07656 0.144405ZM11.2414 10.7296C11.0793 11.6348 10.6438 12.4687 9.99347 13.1189C9.34313 13.7691 8.50918 14.2044 7.60391 14.3663C7.56959 14.3722 7.53482 14.375 7.5 14.3749C7.34322 14.3748 7.19219 14.3159 7.07685 14.2097C6.96151 14.1035 6.89029 13.9579 6.87731 13.8016C6.86433 13.6454 6.91054 13.49 7.00678 13.3662C7.10302 13.2424 7.24225 13.1594 7.39687 13.1335C8.69141 12.9155 9.78984 11.8171 10.0094 10.5202C10.0371 10.3567 10.1287 10.2109 10.2639 10.115C10.3992 10.019 10.567 9.9807 10.7305 10.0085C10.894 10.0362 11.0397 10.1278 11.1357 10.263C11.2316 10.3983 11.27 10.5661 11.2422 10.7296H11.2414Z" fill="#FF7A45"/>
-                </svg>
-              </span>
-            </div>
-            <p class="ring-label">Calories left</p>
+        <div class="action-content">
+          <div class="action-step-block is-active" data-step="0">
+            <span class="action-step">01 · TARGET</span>
+            <h3 class="font-display">Know your numbers</h3>
+            <p>Your calorie and macro targets sit front and center, updating live as you plan and log through the day.</p>
+          </div>
+          <div class="action-step-block" data-step="1">
+            <span class="action-step">02 · BROWSE</span>
+            <h3 class="font-display">Find your meal before you go</h3>
+            <p>Open the app and see exactly what every dining hall is serving today, sorted to fit your diet and goals.</p>
+          </div>
+          <div class="action-step-block" data-step="2">
+            <span class="action-step">03 · LOG</span>
+            <h3 class="font-display">One swipe per meal</h3>
+            <p>Tap what you eat and CampusBite fills in the calories and macros automatically, no searching a database.</p>
+          </div>
+          <div class="action-step-block" data-step="3">
+            <span class="action-step">04 · IMPROVE</span>
+            <h3 class="font-display">Watch it come together</h3>
+            <p>Streaks, weekly trends, and gentle insights show what's working, and never shame a meal.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="steps-section">
+    <div class="features-intro">
+      <div class="pill-badge">
+        <span class="pulse-dot"></span>
+        <span>GET STARTED IN MINUTES</span>
+      </div>
+      <h2 class="font-display">Three taps to eating smarter</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Find your campus</h3>
+        <p>Search your university and load your real dining-hall menus.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Set your goals</h3>
+        <p>Tell us your goal and dietary needs, we build your targets.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Eat &amp; track</h3>
+        <p>Pick meals, swipe to log, and your day adds up automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <div class="features-intro">
+      <div class="pill-badge">
+        <span class="pulse-dot"></span>
+        <span>TESTIMONIALS</span>
+      </div>
+      <h2 class="font-display">Students actually use it</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I finally hit my protein without cooking a thing. It tells me what to grab at the hall."</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">MR</div>
+          <div>
+            <p class="testimonial-name">Maya R.</p>
+            <p class="testimonial-role">Sophomore</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Logging used to take forever. Now it's one swipe and my week tracks itself."</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">DK</div>
+          <div>
+            <p class="testimonial-name">Devin K.</p>
+            <p class="testimonial-role">Freshman</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"The dietary filters are clutch. Gluten-free flags happen automatically!"</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">AL</div>
+          <div>
+            <p class="testimonial-name">Aisha L.</p>
+            <p class="testimonial-role">Junior</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dining-section" id="for-campuses">
+    <div class="dining-card">
+      <div class="dining-copy">
+        <div class="pill-badge">
+          <span class="pulse-dot"></span>
+          <span>FOR DINING SERVICES</span>
+        </div>
+        <h2 class="font-display">Bring CampusBite to your campus</h2>
+        <p>Boost dining engagement and give students the nutrition tools they want, with anonymized insights and simple menu integration.</p>
+      </div>
+      <a href="#contact" class="btn-accent">Partner with us →</a>
+    </div>
+  </section>
+
+  <section class="faq-section" id="contact">
+    <div class="features-intro">
+      <div class="pill-badge">
+        <span class="pulse-dot"></span>
+        <span>FREQUENTLY ASKED</span>
+      </div>
+      <h2 class="font-display">Questions, answered</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item is-open">
+        <button class="faq-question" type="button">
+          <span>Is CampusBite free?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Tracking, menus, and logging are free. Plus adds photo logging, AI meal planning, and long-term trends.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Is my campus supported?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <p>CampusBite is live at 250+ campuses and expanding every semester. Search your school in the app to check, or reach out and we'll help bring it to your dining halls.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Does it work with my diet?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Set your dietary needs, allergies, and restrictions once, and every dining hall menu is filtered to match — vegan, gluten-free, halal, and more.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Is my information private?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Your data is yours. We never sell personal information, and any insights shared with dining services are fully anonymized.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-card">
+      <h2 class="font-display">Start eating smarter today</h2>
+      <p>Free on iOS and Android. Your dining hall, decoded</p>
+      <div class="store-row">
+        <a href="#" class="store-badge" aria-label="Download on the App Store">
+          <img src="App Store.svg" alt="Download on the App Store" />
+        </a>
+        <a href="#" class="store-badge" aria-label="Get it on Google Play">
+          <img src="Google Play.svg" alt="Get it on Google Play" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-holder">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-holder">
+            <div class="logo-mark">
+              <img src="logo.svg" alt="CampusBite logo" />
+            </div>
+            <span class="logo-word">CampusBite</span>
+          </div>
+          <p>Smart eating for campus life. Personalized meal tracking from your real dining-hall menus.</p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h4>Product</h4>
+            <a href="#how-it-works">How it works</a>
+            <a href="#for-campuses">For campuses</a>
+            <a href="#download">Download</a>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <a href="#top">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h4>Legal</h4>
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="#">Privacy &amp; Policy</a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <span>© 2026 CampusBite · Powered by Ocean Development</span>
+        <span>Made for campuses 🍔</span>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    const FORMSPREE_ENDPOINT = "https://formspree.io/f/meenrajq";
-
-    function handleSubmit() {
-      const input = document.getElementById('email-input');
-      const email = input.value.trim();
-      const errorMsg = document.getElementById('error-msg');
-      const submitBtn = document.querySelector('.submit-btn');
-
-      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!valid) {
-        errorMsg.textContent = 'Please enter a valid email.';
-        errorMsg.classList.remove('hidden');
-        input.focus();
-        return;
-      }
-
-      errorMsg.classList.add('hidden');
-      submitBtn.disabled = true;
-
-      fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new URLSearchParams({ email })
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error('Submission failed');
-
-          document.getElementById('form-area').classList.add('hidden');
-          const successArea = document.getElementById('success-area');
-          successArea.classList.remove('hidden');
-          successArea.querySelector('.success-msg').style.animation = 'none';
-          void successArea.querySelector('.success-msg').offsetWidth;
-          successArea.querySelector('.success-msg').style.animation = '';
-        })
-        .catch(() => {
-          errorMsg.textContent = 'Something went wrong. Please try again.';
-          errorMsg.classList.remove('hidden');
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
+    (function () {
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function (item) {
+        var button = item.querySelector('.faq-question');
+        button.addEventListener('click', function () {
+          var wasOpen = item.classList.contains('is-open');
+          faqItems.forEach(function (i) { i.classList.remove('is-open'); });
+          if (!wasOpen) item.classList.add('is-open');
         });
-    }
-
-    document.getElementById('email-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') handleSubmit();
-    });
+      });
+    })();
   </script>
 
+  <script>
+    (function () {
+      var scrollWrap = document.querySelector('.action-scroll');
+      var triggers = document.querySelectorAll('.action-trigger');
+      if (!scrollWrap || !triggers.length) return;
+
+      var stepCount = triggers.length;
+
+      function layout() {
+        scrollWrap.style.height = (stepCount * 100) + 'vh';
+        triggers.forEach(function (t, i) {
+          t.style.top = (i * 100) + 'vh';
+          t.style.height = '100vh';
+        });
+      }
+      layout();
+      window.addEventListener('resize', layout);
+
+      var phoneImgs = document.querySelectorAll('.action-phone-img');
+      var stepBlocks = document.querySelectorAll('.action-step-block');
+      var currentStep = null;
+
+      function setStep(step) {
+        if (step === currentStep) return;
+        currentStep = step;
+        phoneImgs.forEach(function (img) { img.classList.toggle('is-active', img.dataset.step === step); });
+        stepBlocks.forEach(function (block) { block.classList.toggle('is-active', block.dataset.step === step); });
+      }
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var viewportCenter = window.scrollY + window.innerHeight / 2;
+        var closest = null;
+        var closestDist = Infinity;
+        triggers.forEach(function (t) {
+          var rect = t.getBoundingClientRect();
+          var triggerCenter = rect.top + window.scrollY + rect.height / 2;
+          var dist = Math.abs(triggerCenter - viewportCenter);
+          if (dist < closestDist) { closestDist = dist; closest = t; }
+        });
+        if (closest) setStep(closest.dataset.step);
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+
+      update();
+    })();
+  </script>
 </body>
 </html>
