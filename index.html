@@ -51,14 +51,27 @@
       </div>
       <nav class="flex-1 hidden dt:flex items-center justify-center gap-8">
         <a href="#top" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Home</a>
-        <a href="#how-it-works" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
+        <a href="how-it-works.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
         <a href="#about" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">About</a>
         <a href="#for-campuses" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">For campuses</a>
         <a href="#contact" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Contact</a>
       </nav>
-      <div class="w-[140px] hidden xs:flex justify-end shrink-0">
+      <div class="w-[140px] hidden dt:flex justify-end shrink-0">
         <a href="#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
       </div>
+      <button id="menu-toggle" class="group dt:hidden ml-auto flex flex-col items-center justify-center gap-1.5 w-10 h-10 shrink-0" aria-label="Toggle menu" aria-expanded="false">
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:translate-y-2 group-[.is-open]:rotate-45"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-opacity duration-200 group-[.is-open]:opacity-0"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:-translate-y-2 group-[.is-open]:-rotate-45"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden dt:hidden flex-col gap-1 border-t border-bg bg-mango px-6 py-4">
+      <a href="#top" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Home</a>
+      <a href="how-it-works.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">How it works</a>
+      <a href="#about" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">About</a>
+      <a href="#for-campuses" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">For campuses</a>
+      <a href="#contact" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Contact</a>
+      <a href="#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline mt-2 transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
     </div>
   </header>
 
@@ -185,7 +198,7 @@
       <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="2"></div>
       <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="3"></div>
       <div class="action-sticky sticky top-24 dt:top-[120px] flex flex-col dt:flex-row items-center dt:justify-between text-center dt:text-left gap-8 dt:gap-0 py-6 dt:py-10">
-        <div class="action-phone relative w-full max-w-[300px] dt:w-[588px] dt:max-w-none shrink-0 aspect-[588/520]">
+        <div class="action-phone relative w-full max-w-[420px] dt:w-[588px] dt:max-w-none shrink-0 aspect-[588/520]">
           <img class="action-phone-img is-active absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="0" src="phone.png" alt="CampusBite calorie tracking screen" />
           <img class="action-phone-img absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="1" src="phone (1).png" alt="CampusBite dining hall menu screen" />
           <img class="action-phone-img absolute inset-0 w-full h-full object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="2" src="phone (2).png" alt="CampusBite meal logging screen" />
@@ -404,7 +417,7 @@
         <div class="flex gap-10 dt:gap-20 flex-wrap">
           <div class="flex flex-col gap-4">
             <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Product</h4>
-            <a href="#how-it-works" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">How it works</a>
+            <a href="how-it-works.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">How it works</a>
             <a href="#for-campuses" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">For campuses</a>
             <a href="#download" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Download</a>
           </div>
@@ -428,6 +441,41 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (!menuToggle || !mobileMenu) return;
+
+      function closeMenu() {
+        menuToggle.classList.remove('is-open');
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menuToggle.classList.add('is-open');
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        menuToggle.setAttribute('aria-expanded', 'true');
+      }
+
+      menuToggle.addEventListener('click', function () {
+        if (menuToggle.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 960) closeMenu();
+      });
+    })();
+  </script>
 
   <script>
     (function () {
