@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" class="min-h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For campuses — CampusBite</title>
+  <meta name="description" content="Become a CampusBite Founding Partner campus. Give your students the app, get anonymized dining insights, and help shape what we build next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16443a',
+            'primary-bg': '#ccf0e4',
+            accent: '#ff7a45',
+            'accent-dark': '#db5732',
+            ink: '#1e1c1a',
+            muted: '#74716c',
+            bg: '#f0f0ef',
+            'bg-muted': '#c9c7c4',
+            mango: '#fff8f0',
+            bone: '#fdf9f4',
+          },
+          fontFamily: {
+            display: ['Satoshi Variable', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          screens: {
+            xs: '480px',
+            dt: '960px',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-full bg-mango text-ink font-sans">
+
+  <header class="sticky top-0 z-20 bg-mango/[0.64] backdrop-blur-[3px] border-b border-bg px-6">
+    <div class="max-w-[1200px] mx-auto flex items-center gap-6 h-20">
+      <div class="flex items-center gap-2 w-[140px] shrink-0">
+        <div class="flex items-center justify-center shrink-0">
+          <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block" />
+        </div>
+        <span class="font-display font-bold text-[15.13px] leading-none text-primary whitespace-nowrap">CampusBite</span>
+      </div>
+      <nav class="flex-1 hidden dt:flex items-center justify-center gap-8">
+        <a href="index.html#top" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Home</a>
+        <a href="how-it-works.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
+        <a href="about.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">About</a>
+        <a href="for-campuses.html" class="font-display font-medium text-sm leading-[1.35] text-accent no-underline transition-colors duration-150 hover:text-accent-dark">For campuses</a>
+        <a href="contact.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Contact</a>
+      </nav>
+      <div class="w-[140px] hidden dt:flex justify-end shrink-0">
+        <a href="index.html#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+      </div>
+      <button id="menu-toggle" class="group dt:hidden ml-auto flex flex-col items-center justify-center gap-1.5 w-10 h-10 shrink-0" aria-label="Toggle menu" aria-expanded="false">
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:translate-y-2 group-[.is-open]:rotate-45"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-opacity duration-200 group-[.is-open]:opacity-0"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:-translate-y-2 group-[.is-open]:-rotate-45"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden dt:hidden flex-col gap-1 border-t border-bg bg-mango px-6 py-4">
+      <a href="index.html#top" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Home</a>
+      <a href="how-it-works.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">How it works</a>
+      <a href="about.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">About</a>
+      <a href="for-campuses.html" class="font-display font-medium text-base text-accent no-underline py-2 transition-colors duration-150 hover:text-accent-dark">For campuses</a>
+      <a href="contact.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Contact</a>
+      <a href="index.html#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline mt-2 transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+    </div>
+  </header>
+
+  <section class="py-24 px-6 dt:py-32 flex flex-col items-start dt:items-center text-left dt:text-center">
+    <div class="max-w-[720px] flex flex-col items-start dt:items-center gap-6">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-xs dt:text-sm text-accent-dark whitespace-normal dt:whitespace-nowrap">FOUNDING PARTNER PROGRAM · LIMITED SPOTS FOR 2026</span>
+      </div>
+      <h1 class="font-display font-black text-[42px] dt:text-[56px] leading-[1.1] tracking-[-1.6px] text-ink">Become a <span class="text-accent">Founding Partner</span> campus</h1>
+      <p class="font-medium text-[18px] dt:text-[22px] leading-[1.65] text-muted max-w-[42rem]">We're onboarding a first cohort of dining programs. Your students get CampusBite free, you help shape what we build next, and you get in before everyone else.</p>
+      <a href="#request" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-[22px] py-[14px] cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Request an intro call →</a>
+    </div>
+  </section>
+
+  <section class="px-6 pb-20 dt:pb-28">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 dt:grid-cols-2 gap-6">
+      <div class="flex flex-col gap-5 bg-[linear-gradient(135deg,#1c5c47_0%,#16443a_100%)] rounded-2xl p-8">
+        <span class="inline-flex w-fit items-center bg-white/10 text-white/85 font-display font-bold text-xs tracking-[0.04em] uppercase rounded-full px-3 py-1">Available today</span>
+        <h3 class="font-display font-black text-2xl text-white">What your students get now</h3>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#7fe0b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-white/85">The full CampusBite app, free during the pilot</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#7fe0b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-white/85">Your real dining-hall menus, personalized to each student</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#7fe0b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-white/85">A healthier, more engaged dining community</span>
+          </li>
+        </ul>
+        <hr class="border-0 border-t border-white/15" />
+        <p class="font-sans font-normal text-sm leading-[1.6] text-white/60">Setup is simple: send us your menus as an Excel or CSV export, the format you already have. No new software for your staff.</p>
+      </div>
+      <div class="flex flex-col gap-5 bg-white border border-bg rounded-2xl p-8">
+        <span class="inline-flex w-fit items-center bg-[#fde3df] text-accent-dark font-display font-bold text-xs tracking-[0.04em] uppercase rounded-full px-3 py-1">On the roadmap</span>
+        <h3 class="font-display font-black text-2xl text-ink">What we build together</h3>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#16443a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-ink">An anonymized insights dashboard: popular dishes, dietary demand, waste signals</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#16443a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-ink">Direct menu integrations with your dining system</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="#16443a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l3.5 3.5L16 6"/></svg>
+            <span class="font-sans font-normal text-base leading-[1.5] text-ink">Founding Partners help prioritize it and get it first, at no added cost</span>
+          </li>
+        </ul>
+        <hr class="border-0 border-t border-bg" />
+        <p class="font-sans font-normal text-sm leading-[1.6] text-muted">We'd rather be honest: these are in development. Partner with us early and you shape them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 pb-20 dt:pb-28 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-4">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">GET STARTED IN MINUTES</span>
+      </div>
+      <h2 class="font-display font-black text-[32px] dt:text-[42px] leading-[1.1] text-ink">How the pilot works</h2>
+    </div>
+    <div class="w-full max-w-[1200px] mt-12 grid grid-cols-1 dt:grid-cols-3 gap-6 text-left">
+      <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
+        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-primary-bg text-primary font-display font-bold text-sm">1</span>
+        <h3 class="font-display font-bold text-lg text-ink">Intro call</h3>
+        <p class="font-sans font-normal text-base leading-[1.6] text-muted">A 20-minute chat about your halls, your goals, and fit.</p>
+      </div>
+      <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
+        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-primary-bg text-primary font-display font-bold text-sm">2</span>
+        <h3 class="font-display font-bold text-lg text-ink">Send your menus</h3>
+        <p class="font-sans font-normal text-base leading-[1.6] text-muted">Export to Excel or CSV and hand it over. We do the rest.</p>
+      </div>
+      <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
+        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-primary-bg text-primary font-display font-bold text-sm">3</span>
+        <h3 class="font-display font-bold text-lg text-ink">Students go live</h3>
+        <p class="font-sans font-normal text-base leading-[1.6] text-muted">Your campus appears in the app and students start planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="request" class="px-6 pb-20 dt:pb-28 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-4">
+      <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">LET'S TALK</span>
+      </div>
+      <h2 class="font-display font-black text-[32px] dt:text-[42px] leading-[1.1] text-ink">Request an intro call</h2>
+    </div>
+    <form class="w-full max-w-[520px] mt-10 bg-white border border-bg rounded-2xl p-8 flex flex-col gap-5 text-left">
+      <div class="flex flex-col gap-2">
+        <label for="name" class="font-sans font-semibold text-sm text-ink">Name</label>
+        <input id="name" type="text" placeholder="Your name" class="w-full rounded-lg border border-bg px-4 py-3 font-sans text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent transition-colors duration-150" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-sans font-semibold text-sm text-ink">Work email</label>
+        <input id="email" type="email" placeholder="you@university.edu" class="w-full rounded-lg border border-bg px-4 py-3 font-sans text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent transition-colors duration-150" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="institution" class="font-sans font-semibold text-sm text-ink">University / institution</label>
+        <input id="institution" type="text" placeholder="State University" class="w-full rounded-lg border border-bg px-4 py-3 font-sans text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent transition-colors duration-150" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="role" class="font-sans font-semibold text-sm text-ink">Role / title</label>
+        <input id="role" type="text" placeholder="Dining Services Director" class="w-full rounded-lg border border-bg px-4 py-3 font-sans text-base text-ink placeholder:text-muted/70 focus:outline-none focus:border-accent transition-colors duration-150" />
+      </div>
+      <button type="submit" class="w-full inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-[22px] py-[14px] cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Request an intro call</button>
+    </form>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex justify-center">
+    <div class="w-full max-w-[1200px] bg-[linear-gradient(135deg,#1c5c47_0%,#16443a_100%)] rounded-[32px] px-6 py-20 flex flex-col items-center text-center gap-6">
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-white">Start eating smarter today</h2>
+      <p class="font-sans font-normal text-xl text-white/85">Free on iOS and Android. Your dining hall, decoded.</p>
+      <div class="flex items-center gap-4 flex-wrap mt-2">
+        <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Download on the App Store">
+          <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
+        </a>
+        <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Get it on Google Play">
+          <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-primary px-6 pt-16 pb-8">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="flex flex-col dt:flex-row justify-between gap-10 dt:gap-12">
+        <div class="flex flex-col gap-4 max-w-none dt:max-w-[340px]">
+          <div class="flex items-center gap-2 w-auto">
+            <div class="flex items-center justify-center shrink-0">
+              <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block brightness-0 invert" />
+            </div>
+            <span class="font-display font-bold text-[15.13px] text-white">CampusBite</span>
+          </div>
+          <p class="font-sans font-normal text-[15px] leading-[1.5] text-white/65">Smart eating for campus life. Personalized meal tracking from your real dining-hall menus.</p>
+        </div>
+        <div class="flex gap-10 dt:gap-20 flex-wrap">
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Product</h4>
+            <a href="how-it-works.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">How it works</a>
+            <a href="for-campuses.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">For campuses</a>
+            <a href="index.html#download" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Download</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Company</h4>
+            <a href="index.html#top" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Home</a>
+            <a href="about.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">About</a>
+            <a href="contact.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Contact</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Legal</h4>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Terms &amp; Conditions</a>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Privacy &amp; Policy</a>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-12 mb-6 border-0 border-t border-white/15" />
+      <div class="flex flex-col dt:flex-row justify-between items-start dt:items-center flex-wrap gap-4 font-sans font-normal text-sm text-white/55">
+        <span>© 2026 CampusBite · Powered by Ocean Development</span>
+        <span>Made for campuses 🍔</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (!menuToggle || !mobileMenu) return;
+
+      function closeMenu() {
+        menuToggle.classList.remove('is-open');
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menuToggle.classList.add('is-open');
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        menuToggle.setAttribute('aria-expanded', 'true');
+      }
+
+      menuToggle.addEventListener('click', function () {
+        if (menuToggle.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 960) closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
