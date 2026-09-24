@@ -47,38 +47,40 @@
 </head>
 <body class="min-h-full bg-white text-ink font-sans">
 
-  <!-- Navbar -->
-  <header class="flex items-center justify-between px-[38px] py-7 w-full">
-    <div class="h-[43px] w-[167px] shrink-0">
-      <img src="mako-assets/logo.svg" alt="mako." class="block w-full h-full object-contain" />
-    </div>
-    <nav class="hidden md:flex items-center gap-10 font-display font-bold text-[32px] leading-none text-black">
-      <a href="contact.html" class="hover:text-blue transition-colors">contact</a>
-      <a href="#performance" class="hover:text-blue transition-colors">statistics</a>
-      <a href="#how-it-works" class="hover:text-blue transition-colors">how it works</a>
-    </nav>
-    <a href="contact.html" class="inline-flex items-center gap-4 bg-ink h-[50px] px-4 shrink-0 no-underline">
-      <span class="block w-[14px] h-[14px] bg-white shrink-0"></span>
-      <span class="font-display font-bold text-[32px] leading-none text-white">Apply Now</span>
-    </a>
-  </header>
-
-  <!-- Hero -->
-  <section class="flex flex-col gap-6 pb-6 w-full">
-    <div class="w-full h-[300px] md:h-[597px]">
-      <img src="mako-assets/hero.png" alt="Pixel-art coastal mountain landscape" class="w-full h-full object-cover" />
-    </div>
-    <div class="flex flex-col gap-7 px-6 md:px-[70px] w-full">
-      <div class="flex flex-col font-display font-bold leading-none">
-        <p class="text-blue text-[56px] md:text-[96px]">mako.</p>
-        <p class="text-ink text-[36px] md:text-[64px]">where markets diverge, we allocate.</p>
+  <div class="flex flex-col md:h-dvh">
+    <!-- Navbar -->
+    <header class="flex items-center justify-between px-[38px] py-5 w-full shrink-0">
+      <div class="h-9 w-[139px] shrink-0">
+        <img src="mako-assets/logo.svg" alt="mako." class="block w-full h-full object-contain" />
       </div>
-      <a href="contact.html" class="inline-flex items-center gap-4 bg-ink h-[50px] px-4 w-fit no-underline">
-        <span class="block w-[14px] h-[14px] bg-white shrink-0"></span>
-        <span class="font-display font-bold text-[32px] leading-none text-white">Apply Now</span>
+      <nav class="hidden md:flex items-center gap-10 font-display font-bold text-2xl leading-none text-black">
+        <a href="contact.html" class="hover:text-blue transition-colors">contact</a>
+        <a href="#performance" class="hover:text-blue transition-colors">statistics</a>
+        <a href="#how-it-works" class="hover:text-blue transition-colors">how it works</a>
+      </nav>
+      <a href="contact.html" class="inline-flex items-center gap-4 bg-ink h-[42px] px-4 shrink-0 no-underline">
+        <span class="block w-[12px] h-[12px] bg-white shrink-0"></span>
+        <span class="font-display font-bold text-2xl leading-none text-white">Apply Now</span>
       </a>
-    </div>
-  </section>
+    </header>
+
+    <!-- Hero -->
+    <section class="flex flex-col gap-4 pb-4 w-full flex-1 min-h-0">
+      <div class="w-full h-[220px] md:flex-1 md:min-h-0">
+        <img src="mako-assets/hero.png" alt="Pixel-art coastal mountain landscape" class="w-full h-full object-cover" />
+      </div>
+      <div class="flex flex-col gap-4 px-6 md:px-[70px] w-full shrink-0">
+        <div class="flex flex-col font-display font-bold leading-none">
+          <p class="text-blue text-[40px] md:text-[64px]">mako.</p>
+          <p class="text-ink text-[26px] md:text-[40px]">where markets diverge, we allocate.</p>
+        </div>
+        <a href="contact.html" class="inline-flex items-center gap-4 bg-ink h-[42px] px-4 w-fit no-underline">
+          <span class="block w-[12px] h-[12px] bg-white shrink-0"></span>
+          <span class="font-display font-bold text-2xl leading-none text-white">Apply Now</span>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <!-- Performance -->
   <section id="performance" class="flex flex-col items-center justify-center pt-36 pb-[72px] px-6 md:px-[70px] w-full">
