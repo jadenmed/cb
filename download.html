@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — CampusBite</title>
-  <meta name="description" content="Campus dining, made for you. Learn why CampusBite exists and what we believe in." />
+  <title>Download — CampusBite</title>
+  <meta name="description" content="Download CampusBite for iOS and Android. Free personalized meal tracking from your real dining-hall menus." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -52,12 +52,12 @@
       <nav class="flex-1 hidden dt:flex items-center justify-center gap-8">
         <a href="index.html#top" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Home</a>
         <a href="how-it-works.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
-        <a href="about.html" class="font-display font-medium text-sm leading-[1.35] text-accent no-underline transition-colors duration-150 hover:text-accent-dark">About</a>
+        <a href="about.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">About</a>
         <a href="for-campuses.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">For campuses</a>
         <a href="contact.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Contact</a>
       </nav>
       <div class="w-[140px] hidden dt:flex justify-end shrink-0">
-        <a href="index.html#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+        <a href="#get" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
       </div>
       <button id="menu-toggle" class="group dt:hidden ml-auto flex flex-col items-center justify-center gap-1.5 w-10 h-10 shrink-0" aria-label="Toggle menu" aria-expanded="false">
         <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:translate-y-2 group-[.is-open]:rotate-45"></span>
@@ -68,81 +68,24 @@
     <div id="mobile-menu" class="hidden dt:hidden flex-col gap-1 border-t border-bg bg-mango px-6 py-4">
       <a href="index.html#top" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Home</a>
       <a href="how-it-works.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">How it works</a>
-      <a href="about.html" class="font-display font-medium text-base text-accent no-underline py-2 transition-colors duration-150 hover:text-accent-dark">About</a>
+      <a href="about.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">About</a>
       <a href="for-campuses.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">For campuses</a>
       <a href="contact.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Contact</a>
-      <a href="index.html#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline mt-2 transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+      <a href="#get" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline mt-2 transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
     </div>
   </header>
 
-  <section class="py-24 px-6 dt:py-32 flex flex-col items-start dt:items-center text-left dt:text-center">
-    <div class="max-w-[640px] flex flex-col items-start dt:items-center gap-6">
+  <section id="get" class="pt-20 pb-0 px-6 dt:pt-28 flex flex-col items-center text-center overflow-hidden">
+    <div class="max-w-[720px] flex flex-col items-center gap-6">
       <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
         <span class="w-4 h-4 flex items-center justify-center">
           <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
         </span>
-        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">ABOUT US</span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">GET THE APP</span>
       </div>
-      <h1 class="font-display font-black text-[56px] dt:text-[64px] leading-[1.05] tracking-[-1.6px] text-ink">Campus dining, <span class="text-accent">made for you</span></h1>
-      <p class="font-medium text-[18px] dt:text-[22px] leading-[1.65] text-muted max-w-[42rem]">Millions of students eat most meals on a campus plan, with almost no tools to eat well while doing it.</p>
-    </div>
-  </section>
-
-  <section class="px-6 pb-20 dt:pb-28">
-    <div class="max-w-[820px] mx-auto flex flex-col gap-10 text-left">
-      <div class="flex flex-col gap-3">
-        <h2 class="font-display font-black text-[26px] dt:text-[30px] leading-[1.15] text-ink">Our mission</h2>
-        <p class="font-sans font-normal text-lg leading-[1.7] text-muted">CampusBite makes the food that's already on campus work for students' health and goals, no extra cooking, no generic diet app that has no idea what your dining hall serves. Just your real menus, turned into a plan that fits you.</p>
-      </div>
-      <div class="flex flex-col gap-3">
-        <h2 class="font-display font-black text-[26px] dt:text-[30px] leading-[1.15] text-ink">Why we built it</h2>
-        <p class="font-sans font-normal text-lg leading-[1.7] text-muted">We were students trying to hit protein or eat around allergies with nothing but a printed menu and guesswork. Every nutrition app assumed we cooked our own food. None knew what was at the dining hall. So we built the one that does.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 dt:py-28 px-6 border-y border-bg bg-bg/40">
-    <div class="max-w-[1200px] mx-auto flex flex-col items-center gap-14">
-      <div class="flex flex-col items-center gap-4 text-center">
-        <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
-          <span class="w-4 h-4 flex items-center justify-center">
-            <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
-          </span>
-          <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">OUR VALUE</span>
-        </div>
-        <h2 class="font-display font-black text-[32px] dt:text-[42px] leading-[1.1] text-ink">What we believe</h2>
-      </div>
-      <div class="w-full grid grid-cols-1 dt:grid-cols-3 gap-6">
-        <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
-          <div class="w-11 h-11 flex items-center justify-center rounded-xl bg-[#fde3df]">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8536f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-lg text-ink">Students first</h3>
-          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Every decision starts with whether it helps a student eat better.</p>
-        </div>
-        <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
-          <div class="w-11 h-11 flex items-center justify-center rounded-xl bg-primary-bg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16443a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-lg text-ink">Health, not shame</h3>
-          <p class="font-sans font-normal text-base leading-[1.6] text-muted">We nudge gently, celebrate wins, and never guilt a meal.</p>
-        </div>
-        <div class="flex flex-col gap-4 bg-white border border-bg rounded-2xl p-6">
-          <div class="w-11 h-11 flex items-center justify-center rounded-xl bg-[#dbeafe]">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3 class="font-display font-bold text-lg text-ink">Privacy by default</h3>
-          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Your data is sensitive. We protect it and never sell it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16 dt:py-24 px-6 flex justify-center">
-    <div class="w-full max-w-[1200px] bg-[linear-gradient(135deg,#1c5c47_0%,#16443a_100%)] rounded-[32px] px-6 py-20 flex flex-col items-center text-center gap-6">
-      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-white">Start eating smarter today</h2>
-      <p class="font-sans font-normal text-xl text-white/85">Free on iOS and Android. Your dining hall, decoded.</p>
-      <div class="flex items-center gap-4 flex-wrap mt-2">
+      <h1 class="font-display font-black text-[48px] xs:text-[64px] dt:text-[80px] leading-[0.95] tracking-[-2px] text-ink">Download<br /><span class="text-accent">CampusBite</span></h1>
+      <p class="font-medium text-[18px] dt:text-[22px] leading-[1.65] text-muted max-w-[36rem]">Free on iOS and Android. Your dining hall, decoded.</p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
         <a href="#" class="inline-flex h-[52px] w-[180px] no-underline" aria-label="Download on the App Store">
           <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
         </a>
@@ -150,6 +93,9 @@
           <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
         </a>
       </div>
+    </div>
+    <div class="w-full max-w-[720px] mt-12">
+      <img src="hero-image.png" alt="CampusBite app on two phones" class="w-full h-auto" />
     </div>
   </section>
 
