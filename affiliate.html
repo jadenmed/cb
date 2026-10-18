@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="min-h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply — CampusBite Affiliates</title>
+  <meta name="description" content="Share CampusBite with students on your campus and earn through your own link. Apply to become a CampusBite affiliate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16443a',
+            'primary-bg': '#ccf0e4',
+            accent: '#ff7a45',
+            'accent-dark': '#db5732',
+            ink: '#1e1c1a',
+            muted: '#74716c',
+            bg: '#f0f0ef',
+            'bg-muted': '#c9c7c4',
+            mango: '#fff8f0',
+            bone: '#fdf9f4',
+          },
+          fontFamily: {
+            display: ['Satoshi Variable', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          screens: {
+            xs: '480px',
+            dt: '960px',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-full bg-mango text-ink font-sans overflow-x-hidden">
+
+  <!-- Fixed topbar: logo on the left, exit back to the site on the right -->
+  <header class="fixed top-0 inset-x-0 z-30 h-16 flex items-center justify-between px-6 bg-mango/90 backdrop-blur-[3px] border-b border-bg">
+    <a href="index.html" class="flex items-center gap-2 no-underline">
+      <img src="logo.svg" alt="CampusBite logo" class="w-[28px] h-[18.7px] block" />
+      <span class="font-display font-bold text-sm leading-none text-primary whitespace-nowrap">CampusBite</span>
+    </a>
+    <a href="index.html" aria-label="Exit application" class="flex items-center justify-center w-9 h-9 rounded-full text-muted hover:text-ink hover:bg-bg transition-colors duration-150 no-underline">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </a>
+  </header>
+
+  <!-- Fixed progress bar, fills with the brand green as the applicant moves through the questions -->
+  <div class="fixed top-16 inset-x-0 z-30 h-1 bg-bg">
+    <div id="progress-fill" class="h-full bg-primary transition-[width] duration-300 ease-out" style="width: 0%"></div>
+  </div>
+
+  <!-- Fixed step counter, only shown while on a question step -->
+  <div id="step-counter" class="hidden fixed bottom-6 left-6 z-20 font-sans font-semibold text-sm text-muted"></div>
+
+  <main class="min-h-screen flex items-center justify-center px-6 pt-24 pb-20">
+    <div class="w-full max-w-[560px]">
+
+      <!-- Step 0: Welcome -->
+      <section class="step transition-all duration-300 ease-out" data-index="0">
+        <div class="flex flex-col items-start gap-6">
+          <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+            <span class="w-4 h-4 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+            </span>
+            <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">CAMPUSBITE AFFILIATES</span>
+          </div>
+          <h1 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] tracking-[-1px] text-ink">We're looking for affiliates.</h1>
+          <p class="font-sans font-normal text-lg leading-[1.5] text-muted max-w-[480px]">Share CampusBite with students on your campus and earn through your own link. Takes about 2 minutes.</p>
+          <button type="button" data-action="start" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-6 py-3.5 cursor-pointer shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Apply</button>
+        </div>
+      </section>
+
+      <!-- Step 1: Name -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="1" data-key="name" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">What's your name?</h2>
+          <input type="text" class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-xl font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150" placeholder="Type your answer here" autocomplete="name" />
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 2: School email -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="2" data-key="email" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">What's your school email?</h2>
+          <p class="font-sans text-base text-muted">Use your .edu address so we can verify you're a student.</p>
+          <input type="email" class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-xl font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150" placeholder="you@school.edu" autocomplete="email" />
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 3: School -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="3" data-key="school" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">Which school do you go to?</h2>
+          <input type="text" class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-xl font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150" placeholder="Type your answer here" autocomplete="organization" />
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 4: Graduation year (single choice) -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="4" data-key="gradYear" data-required="true" data-select="single">
+        <div class="flex flex-col gap-4">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">When do you graduate?</h2>
+          <div class="choice-list flex flex-col gap-3">
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2026">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">A</span>
+              <span class="font-sans text-base text-ink">2026</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2027">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">B</span>
+              <span class="font-sans text-base text-ink">2027</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2028">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">C</span>
+              <span class="font-sans text-base text-ink">2028</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2029">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">D</span>
+              <span class="font-sans text-base text-ink">2029</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2030 or later">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">E</span>
+              <span class="font-sans text-base text-ink">2030 or later</span>
+            </button>
+          </div>
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 5: TikTok handle -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="5" data-key="tiktok" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">What's your TikTok handle?</h2>
+          <p class="font-sans text-base text-muted">Type "none" if you don't have one.</p>
+          <input type="text" class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-xl font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150" placeholder="@handle" />
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 6: Instagram handle -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="6" data-key="instagram" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">What's your Instagram handle?</h2>
+          <p class="font-sans text-base text-muted">Type "none" if you don't have one.</p>
+          <input type="text" class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-xl font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150" placeholder="@handle" />
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 7: Follower count (single choice) -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="7" data-key="followers" data-required="true" data-select="single">
+        <div class="flex flex-col gap-4">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">Roughly how many followers do you have across your accounts?</h2>
+          <div class="choice-list flex flex-col gap-3">
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Under 500">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">A</span>
+              <span class="font-sans text-base text-ink">Under 500</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="500 to 2K">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">B</span>
+              <span class="font-sans text-base text-ink">500 to 2K</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="2K to 10K">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">C</span>
+              <span class="font-sans text-base text-ink">2K to 10K</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="10K+">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">D</span>
+              <span class="font-sans text-base text-ink">10K+</span>
+            </button>
+          </div>
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 8: Where they'd share (multi choice) -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="8" data-key="shareWhere" data-required="true" data-select="multi">
+        <div class="flex flex-col gap-4">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">Where would you share your link?</h2>
+          <p class="font-sans text-sm text-muted">Choose all that apply.</p>
+          <div class="choice-list flex flex-col gap-3">
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Instagram stories">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">A</span>
+              <span class="font-sans text-base text-ink">Instagram stories</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="TikTok">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">B</span>
+              <span class="font-sans text-base text-ink">TikTok</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Group chats">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">C</span>
+              <span class="font-sans text-base text-ink">Group chats</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Clubs or Greek life">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">D</span>
+              <span class="font-sans text-base text-ink">Clubs or Greek life</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Dorm or class chats">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">E</span>
+              <span class="font-sans text-base text-ink">Dorm or class chats</span>
+            </button>
+            <button type="button" class="choice flex items-center gap-4 p-4 rounded-2xl border border-bg bg-white text-left transition-colors duration-150 hover:border-accent" data-value="Other">
+              <span class="choice-indicator w-8 h-8 shrink-0 flex items-center justify-center rounded-lg border border-bg-muted font-display font-bold text-sm text-muted transition-colors duration-150">F</span>
+              <span class="font-sans text-base text-ink">Other</span>
+            </button>
+          </div>
+          <p class="field-error hidden text-sm text-red-500"></p>
+        </div>
+      </section>
+
+      <!-- Step 9: Why CampusBite (long text) -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="9" data-key="why" data-required="true">
+        <div class="flex flex-col gap-3">
+          <h2 class="font-display font-black text-[26px] dt:text-[32px] leading-[1.15] text-ink">Why would students at your school want CampusBite?</h2>
+          <textarea class="field-input w-full bg-transparent border-0 border-b-2 border-bg text-lg font-sans text-ink py-3 focus:outline-none focus:border-accent transition-colors duration-150 resize-none" rows="4" maxlength="500" placeholder="Type your answer here"></textarea>
+          <div class="flex items-center justify-between">
+            <p class="field-error hidden text-sm text-red-500"></p>
+            <p class="char-count font-sans text-xs text-muted ml-auto">0 / 500</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 10: Thank you -->
+      <section class="step hidden transition-all duration-300 ease-out" data-index="10">
+        <div class="flex flex-col items-start gap-4">
+          <div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary-bg text-primary">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10.5L8 14.5L16 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h1 class="font-display font-black text-[32px] dt:text-[40px] leading-[1.1] text-ink">You're in the queue.</h1>
+          <p class="font-sans font-normal text-lg leading-[1.5] text-muted max-w-[480px]">We'll review your application and email you your personal link if you're approved.</p>
+        </div>
+      </section>
+
+      <!-- Back / OK controls, hidden on the welcome and thank-you screens -->
+      <div id="nav-controls" class="hidden items-center gap-4 mt-10">
+        <button type="button" data-action="back" class="inline-flex items-center justify-center bg-transparent text-muted font-sans font-semibold text-sm border border-bg rounded-[10px] px-5 py-3 cursor-pointer transition-colors duration-150 hover:text-ink hover:border-bg-muted">Back</button>
+        <button type="button" data-action="next" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-6 py-3 cursor-pointer shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100">OK</button>
+        <span class="font-sans text-xs text-muted">press Enter ↵</span>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // -----------------------------------------------------------------
+      // CampusBite affiliate application — single-page conversational form
+      // -----------------------------------------------------------------
+      var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+      var questionSteps = steps.filter(function (s) { return s.dataset.key; });
+      var totalQuestions = questionSteps.length;
+      var lastIndex = steps.length - 1; // thank-you screen
+      var current = 0;
+      var answers = {};
+
+      // Hidden field: captured once from the URL, e.g. affiliate.html?source=ig_bio
+      var hiddenSource = new URLSearchParams(window.location.search).get('source') || '';
+
+      var progressFill = document.getElementById('progress-fill');
+      var stepCounter = document.getElementById('step-counter');
+      var navControls = document.getElementById('nav-controls');
+      var backBtn = navControls.querySelector('[data-action="back"]');
+      var nextBtn = navControls.querySelector('[data-action="next"]');
+
+      function questionNumber(stepEl) {
+        return questionSteps.indexOf(stepEl) + 1; // 1-based
+      }
+
+      function updateChrome() {
+        var stepEl = steps[current];
+        var isQuestion = !!stepEl.dataset.key;
+
+        // Progress bar: 0% on welcome, 100% on thank-you, evenly spaced across questions.
+        var pct = current === 0 ? 0 : current === lastIndex ? 100 : (questionNumber(stepEl) / totalQuestions) * 100;
+        progressFill.style.width = pct + '%';
+
+        if (isQuestion) {
+          stepCounter.textContent = questionNumber(stepEl) + ' / ' + totalQuestions;
+          stepCounter.classList.remove('hidden');
+        } else {
+          stepCounter.classList.add('hidden');
+        }
+
+        if (current === 0 || current === lastIndex) {
+          navControls.classList.add('hidden');
+          navControls.classList.remove('flex');
+        } else {
+          navControls.classList.remove('hidden');
+          navControls.classList.add('flex');
+          backBtn.style.visibility = current === 1 ? 'hidden' : 'visible';
+          nextBtn.textContent = questionNumber(stepEl) === totalQuestions ? 'Submit' : 'OK';
+        }
+      }
+
+      function showStep(index) {
+        var oldEl = steps[current];
+        var newEl = steps[index];
+        oldEl.classList.add('hidden');
+        current = index;
+        newEl.classList.remove('hidden');
+        newEl.classList.add('opacity-0', 'translate-y-2');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            newEl.classList.remove('opacity-0', 'translate-y-2');
+          });
+        });
+        updateChrome();
+        var focusTarget = newEl.querySelector('input, textarea, button.choice, button[data-action="start"]');
+        if (focusTarget) setTimeout(function () { focusTarget.focus(); }, 320);
+      }
+
+      function showError(stepEl, message) {
+        var errorEl = stepEl.querySelector('.field-error');
+        if (!errorEl) return;
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+
+      function clearError(stepEl) {
+        var errorEl = stepEl.querySelector('.field-error');
+        if (errorEl) errorEl.classList.add('hidden');
+      }
+
+      function getSelectedChoices(stepEl) {
+        return Array.prototype.slice.call(stepEl.querySelectorAll('.choice.is-selected')).map(function (c) { return c.dataset.value; });
+      }
+
+      // Validates the current question step and stores the answer if valid.
+      function validateAndSave(stepEl) {
+        var key = stepEl.dataset.key;
+        var required = stepEl.dataset.required === 'true';
+        var select = stepEl.dataset.select;
+        clearError(stepEl);
+
+        if (select) {
+          var selected = getSelectedChoices(stepEl);
+          if (required && selected.length === 0) {
+            showError(stepEl, select === 'multi' ? 'Choose at least one option.' : 'Choose one option to continue.');
+            return false;
+          }
+          answers[key] = select === 'multi' ? selected : selected[0];
+          return true;
+        }
+
+        var input = stepEl.querySelector('.field-input');
+        var value = input.value.trim();
+        if (required && value === '') {
+          showError(stepEl, 'This field is required.');
+          return false;
+        }
+        if (input.type === 'email' && value !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          showError(stepEl, 'Enter a valid email address.');
+          return false;
+        }
+        answers[key] = value;
+        return true;
+      }
+
+      function attemptNext() {
+        var stepEl = steps[current];
+        if (current === 0 || current === lastIndex) return;
+        if (!validateAndSave(stepEl)) return;
+
+        if (questionNumber(stepEl) === totalQuestions) {
+          submitApplication();
+          return;
+        }
+        showStep(current + 1);
+      }
+
+      function attemptBack() {
+        if (current > 1) showStep(current - 1);
+      }
+
+      // Submits the application to Formspree. On success, advance to the
+      // thank-you screen; on failure, show an inline error and let the
+      // applicant retry without losing their answers.
+      var FORMSPREE_ENDPOINT = 'https://formspree.io/f/meenrajq';
+
+      function submitApplication() {
+        var stepEl = steps[current];
+        var payload = Object.assign({ source: hiddenSource }, answers);
+
+        clearError(stepEl);
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Submitting...';
+
+        fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Submission failed');
+            showStep(lastIndex);
+          })
+          .catch(function () {
+            showError(stepEl, "Something went wrong submitting your application. Please try again.");
+            nextBtn.disabled = false;
+            nextBtn.textContent = 'Submit';
+          });
+      }
+
+      // Choice selection (single vs multi select)
+      steps.forEach(function (stepEl) {
+        var select = stepEl.dataset.select;
+        if (!select) return;
+        var choices = Array.prototype.slice.call(stepEl.querySelectorAll('.choice'));
+        choices.forEach(function (choiceEl) {
+          choiceEl.addEventListener('click', function () {
+            if (select === 'single') {
+              choices.forEach(function (c) { setChoiceSelected(c, c === choiceEl); });
+            } else {
+              setChoiceSelected(choiceEl, !choiceEl.classList.contains('is-selected'));
+            }
+            clearError(stepEl);
+          });
+        });
+      });
+
+      function setChoiceSelected(choiceEl, selected) {
+        var indicator = choiceEl.querySelector('.choice-indicator');
+        choiceEl.classList.toggle('is-selected', selected);
+        choiceEl.classList.toggle('border-accent', selected);
+        indicator.classList.toggle('bg-accent', selected);
+        indicator.classList.toggle('text-white', selected);
+        indicator.classList.toggle('border-accent', selected);
+      }
+
+      // Character counter for the long-text question
+      var textarea = document.querySelector('textarea.field-input');
+      if (textarea) {
+        var counter = textarea.closest('section').querySelector('.char-count');
+        textarea.addEventListener('input', function () {
+          counter.textContent = textarea.value.length + ' / ' + textarea.maxLength;
+        });
+      }
+
+      document.querySelector('[data-action="start"]').addEventListener('click', function () { showStep(1); });
+      backBtn.addEventListener('click', attemptBack);
+      nextBtn.addEventListener('click', attemptNext);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        var tag = document.activeElement.tagName;
+        if (tag === 'TEXTAREA' && e.shiftKey) return; // allow newline
+        e.preventDefault();
+        if (current === 0) {
+          showStep(1);
+        } else if (current !== lastIndex) {
+          attemptNext();
+        }
+      });
+
+      updateChrome();
+    })();
+  </script>
+</body>
+</html>
