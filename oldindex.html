@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="min-h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusBite — Eat smart on campus</title>
+  <meta name="description" content="CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16443a',
+            'primary-bg': '#ccf0e4',
+            accent: '#ff7a45',
+            'accent-dark': '#db5732',
+            ink: '#1e1c1a',
+            muted: '#74716c',
+            bg: '#f0f0ef',
+            'bg-muted': '#c9c7c4',
+            mango: '#fff8f0',
+            bone: '#fdf9f4',
+          },
+          fontFamily: {
+            display: ['Satoshi Variable', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          screens: {
+            xs: '480px',
+            dt: '960px',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-full bg-mango text-ink font-sans">
+
+  <header class="sticky top-0 z-20 bg-mango/[0.64] backdrop-blur-[3px] border-b border-bg px-6">
+    <div class="max-w-[1200px] mx-auto flex items-center gap-6 h-20">
+      <div class="flex items-center gap-2 w-[140px] shrink-0">
+        <div class="flex items-center justify-center shrink-0">
+          <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block" />
+        </div>
+        <span class="font-display font-bold text-[15.13px] leading-none text-primary whitespace-nowrap">CampusBite</span>
+      </div>
+      <nav class="flex-1 hidden dt:flex items-center justify-center gap-8">
+        <a href="#top" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Home</a>
+        <a href="how-it-works.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">How it works</a>
+        <a href="about.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">About</a>
+        <a href="for-campuses.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">For campuses</a>
+        <a href="contact.html" class="font-display font-medium text-sm leading-[1.35] text-muted no-underline transition-colors duration-150 hover:text-ink">Contact</a>
+      </nav>
+      <div class="w-[140px] hidden dt:flex justify-end shrink-0">
+        <a href="#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+      </div>
+      <button id="menu-toggle" class="group dt:hidden ml-auto flex flex-col items-center justify-center gap-1.5 w-10 h-10 shrink-0" aria-label="Toggle menu" aria-expanded="false">
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:translate-y-2 group-[.is-open]:rotate-45"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-opacity duration-200 group-[.is-open]:opacity-0"></span>
+        <span class="block w-6 h-0.5 bg-ink rounded-full transition-transform duration-200 group-[.is-open]:-translate-y-2 group-[.is-open]:-rotate-45"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden dt:hidden flex-col gap-1 border-t border-bg bg-mango px-6 py-4">
+      <a href="#top" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Home</a>
+      <a href="how-it-works.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">How it works</a>
+      <a href="about.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">About</a>
+      <a href="for-campuses.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">For campuses</a>
+      <a href="contact.html" class="font-display font-medium text-base text-muted no-underline py-2 transition-colors duration-150 hover:text-ink">Contact</a>
+      <a href="#download" class="inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-sm leading-6 border-0 rounded-[10px] px-4 py-2.5 cursor-pointer no-underline mt-2 transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Get the app</a>
+    </div>
+  </header>
+
+  <section class="py-14 px-4 xs:px-6 xs:py-24 dt:py-36 overflow-hidden" id="top">
+    <div class="max-w-[1200px] mx-auto flex flex-col dt:flex-row items-center gap-6">
+      <div class="flex-1 min-w-0 flex flex-col items-start gap-6">
+        <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+          <span class="w-4 h-4 flex items-center justify-center">
+            <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+          </span>
+          <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">NOW ON IOS &amp; ANDROID</span>
+        </div>
+
+        <div class="reveal flex flex-col gap-6 py-2" style="transition-delay: 0.08s">
+          <h1 class="font-display font-black text-[38px] xs:text-[52px] dt:text-[80px] leading-none tracking-[-1.6px] text-ink">Eat smart on <span class="text-accent">campus.</span></h1>
+          <p class="font-medium text-[18px] dt:text-[22px] leading-[1.65] text-muted max-w-[46rem]">CampusBite turns your dining-hall menus into a personalized meal plan — track calories and macros from the food that's already on your meal plan.</p>
+        </div>
+
+        <div class="reveal flex items-center gap-3 xs:gap-4 w-full xs:w-auto" style="transition-delay: 0.16s">
+          <a href="#" class="inline-flex flex-1 xs:flex-none h-11 w-full max-w-[180px] xs:w-[180px] xs:h-[52px] no-underline" aria-label="Download on the App Store">
+            <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
+          </a>
+          <a href="#" class="inline-flex flex-1 xs:flex-none h-11 w-full max-w-[180px] xs:w-[180px] xs:h-[52px] no-underline" aria-label="Get it on Google Play">
+            <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
+          </a>
+        </div>
+
+        <div class="reveal grid grid-cols-3 gap-3 pt-4 dt:flex dt:items-center dt:gap-4" style="transition-delay: 0.24s">
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">300+</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">schools in US &amp; Canada</p>
+          </div>
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">38K+</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">meals logged</p>
+          </div>
+          <div class="flex flex-col gap-2 w-auto dt:w-[168px]">
+            <p class="font-sans font-semibold text-2xl dt:text-[32px] leading-[1.35] text-black whitespace-normal dt:whitespace-nowrap">4.8</p>
+            <p class="font-sans font-semibold text-base leading-[1.1] text-muted">average rating</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal w-full max-w-[380px] aspect-square mx-auto flex items-center justify-center dt:flex-1 dt:min-w-0 dt:w-auto dt:max-w-none dt:aspect-auto dt:mx-0" style="transition-delay: 0.1s">
+        <img src="hero-image.png" alt="CampusBite app on two phones" class="w-full h-auto" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bone border-t border-b border-bg-muted flex flex-col items-center gap-6 py-8 px-6 text-center">
+    <p class="reveal font-semibold text-base text-muted">COMING TO DINING HALLS AT SCHOOLS ACROSS THE USA AND CANADA</p>
+    <div class="reveal flex items-center justify-center gap-8 dt:gap-20 flex-wrap font-display font-bold text-xl text-muted" style="transition-delay: 0.08s">
+      <span>FIU</span>
+      <span>Miami</span>
+      <span>NYU</span>
+      <span>Stanford</span>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center" id="how-it-works">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">WHY CAMPUSBITE</span>
+      </div>
+      <h2 class="reveal font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink" style="transition-delay: 0.08s">Everything you need to eat well on campus</h2>
+      <p class="reveal font-sans font-normal text-xl leading-[1.35] text-muted" style="transition-delay: 0.16s">Built around the food that's already on your meal plan — not a generic diet app.</p>
+    </div>
+
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 dt:grid-rows-[auto_auto_auto] gap-6 text-left">
+      <div class="reveal rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-span-2 dt:col-start-1 dt:row-start-1 bg-primary">
+        <span class="font-display font-black text-sm leading-[1.35] text-primary-bg">MENUS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-white">Every dining hall, decoded</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-bg">See today's menu at every dining hall, filtered to your diet, with allergen flags.</p>
+      </div>
+      <div class="reveal rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-3 dt:row-start-1 bg-white border border-bg" style="transition-delay: 0.08s">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">GOALS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Targets built for you</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-muted">Personalized calories &amp; macros from your body and goals.</p>
+      </div>
+      <div class="reveal rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-1 dt:row-start-2 dt:row-span-2 bg-accent relative" style="transition-delay: 0.16s">
+        <span class="font-display font-black text-sm leading-[1.35] text-white">LOGGING</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-white">Log a day in seconds</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-bg">Swipe to log breakfast, lunch, and dinner. It adds up on its own.</p>
+        <span class="font-display font-black text-[40px] leading-none text-white mt-auto">1-tap</span>
+      </div>
+      <div class="reveal rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-2 dt:row-start-2 bg-white border border-bg" style="transition-delay: 0.24s">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">DIET</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Fits your restrictions</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">VEGAN</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">GLUTEN-FREE</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">HALAL</span>
+          <span class="font-sans font-semibold text-[11px] text-primary bg-primary-bg rounded-full px-2.5 py-1">ALLERGIES</span>
+        </div>
+      </div>
+      <div class="reveal rounded-3xl p-6 flex flex-col gap-3 min-h-[250px] dt:col-start-3 dt:row-start-2 bg-white border border-bg" style="transition-delay: 0.32s">
+        <span class="font-display font-black text-sm leading-[1.35] text-accent">PROGRESS</span>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Streaks &amp; trends</h3>
+        <p class="font-sans font-medium text-sm leading-[1.65] text-muted">Weekly recaps that keep you going.</p>
+      </div>
+      <div class="reveal rounded-3xl dt:col-start-2 dt:col-span-2 dt:row-start-3 bg-mango p-0 overflow-hidden" style="transition-delay: 0.4s">
+        <img src="Card-Feature.png" alt="CampusBite app logging a meal" class="w-full h-auto block" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">SEE IT IN ACTION</span>
+      </div>
+      <h2 class="reveal font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink" style="transition-delay: 0.08s">Your whole day, one screen at a time</h2>
+    </div>
+
+    <div class="action-scroll relative max-w-[1200px] w-full mt-20">
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="0"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="1"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="2"></div>
+      <div class="action-trigger absolute left-0 w-full pointer-events-none" data-step="3"></div>
+      <div class="action-sticky sticky top-16 dt:top-[120px] flex flex-col dt:flex-row items-center dt:justify-between text-center dt:text-left gap-4 dt:gap-0 py-4 dt:py-10">
+        <div class="action-phone relative w-full max-w-[190px] aspect-[342/519] overflow-hidden mx-auto dt:w-[588px] dt:max-w-none dt:aspect-[588/520] dt:overflow-visible dt:mx-0 shrink-0">
+          <img class="action-phone-img is-active absolute inset-0 w-full h-full object-cover object-center dt:object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="0" src="phone.png" alt="CampusBite calorie tracking screen" loading="lazy" decoding="async" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-cover object-center dt:object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="1" src="phone (1).png" alt="CampusBite dining hall menu screen" loading="lazy" decoding="async" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-cover object-center dt:object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="2" src="phone (2).png" alt="CampusBite meal logging screen" loading="lazy" decoding="async" />
+          <img class="action-phone-img absolute inset-0 w-full h-full object-cover object-center dt:object-contain block opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100" data-step="3" src="phone (3).png" alt="CampusBite profile and trends screen" loading="lazy" decoding="async" />
+        </div>
+        <div class="action-content relative w-full min-h-[220px] dt:w-[480px] dt:shrink-0 dt:min-h-[220px]">
+          <div class="action-step-block is-active absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="0">
+            <span class="font-display font-black text-sm text-accent">01 · TARGET</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Know your numbers</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Your calorie and macro targets sit front and center, updating live as you plan and log through the day.</p>
+          </div>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="1">
+            <span class="font-display font-black text-sm text-accent">02 · BROWSE</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Find your meal before you go</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Open the app and see exactly what every dining hall is serving today, sorted to fit your diet and goals.</p>
+          </div>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="2">
+            <span class="font-display font-black text-sm text-accent">03 · LOG</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">One swipe per meal</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Tap what you eat and CampusBite fills in the calories and macros automatically, no searching a database.</p>
+          </div>
+          <div class="action-step-block absolute inset-0 flex flex-col items-center dt:items-start gap-4 opacity-0 translate-y-3 transition-all duration-[400ms] pointer-events-none [&.is-active]:opacity-100 [&.is-active]:translate-y-0 [&.is-active]:pointer-events-auto" data-step="3">
+            <span class="font-display font-black text-sm text-accent">04 · IMPROVE</span>
+            <h3 class="font-display font-black text-[32px] leading-[1.1] text-ink">Watch it come together</h3>
+            <p class="font-sans font-normal text-lg leading-[1.5] text-muted">Streaks, weekly trends, and gentle insights show what's working, and never shame a meal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">GET STARTED IN MINUTES</span>
+      </div>
+      <h2 class="reveal font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink" style="transition-delay: 0.08s">Three taps to eating smarter</h2>
+    </div>
+
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 gap-6 text-left">
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">1</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Find your campus</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Search your university and load your real dining-hall menus.</p>
+      </div>
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4" style="transition-delay: 0.1s">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">2</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Set your goals</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Tell us your goal and dietary needs, we build your targets.</p>
+      </div>
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4" style="transition-delay: 0.2s">
+        <div class="w-10 h-10 flex items-center justify-center bg-primary-bg text-primary rounded-[10px] font-display font-bold text-lg">3</div>
+        <h3 class="font-display font-black text-xl leading-[1.1] text-ink">Eat &amp; track</h3>
+        <p class="font-sans font-normal text-[15px] leading-[1.5] text-muted">Pick meals, swipe to log, and your day adds up automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">TESTIMONIALS</span>
+      </div>
+      <h2 class="reveal font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink" style="transition-delay: 0.08s">Students actually use it</h2>
+    </div>
+
+    <div class="w-full max-w-[1200px] mt-12 dt:mt-16 grid grid-cols-1 dt:grid-cols-3 gap-6 text-left">
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"I finally hit my protein without cooking a thing. It tells me what to grab at the hall."</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">MR</div>
+          <div>
+            <p class="font-sans font-semibold text-[15px] text-ink">Maya R.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Sophomore</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4" style="transition-delay: 0.1s">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"Logging used to take forever. Now it's one swipe and my week tracks itself."</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">DK</div>
+          <div>
+            <p class="font-sans font-semibold text-[15px] text-ink">Devin K.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Freshman</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal bg-white border border-bg rounded-3xl p-8 flex flex-col gap-4" style="transition-delay: 0.2s">
+        <div class="flex gap-1 text-accent text-base leading-none">★★★★★</div>
+        <p class="font-sans font-normal text-base leading-[1.5] text-ink">"The dietary filters are clutch. Gluten-free flags happen automatically!"</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-11 h-11 shrink-0 flex items-center justify-center bg-primary-bg text-primary rounded-full font-display font-bold text-[15px]">AL</div>
+          <div>
+            <p class="font-sans font-semibold text-[15px] text-ink">Aisha L.</p>
+            <p class="font-sans font-normal text-[13px] text-muted">Junior</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex justify-center" id="for-campuses">
+    <div class="reveal w-full max-w-[1200px] bg-white rounded-[32px] shadow-[0_30px_60px_rgba(30,28,26,0.06)] p-10 dt:p-16 flex flex-col dt:flex-row items-start dt:items-center justify-between gap-12">
+      <div class="flex flex-col items-start gap-6 text-left">
+        <div class="inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+          <span class="w-4 h-4 flex items-center justify-center">
+            <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+          </span>
+          <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">FOR DINING SERVICES</span>
+        </div>
+        <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink">Bring CampusBite to your campus</h2>
+        <p class="font-sans font-normal text-lg leading-[1.5] text-muted max-w-[34rem]">Boost dining engagement and give students the nutrition tools they want, with anonymized insights and simple menu integration.</p>
+      </div>
+      <a href="#contact" class="shrink-0 inline-flex items-center justify-center gap-1.5 bg-accent text-white font-sans font-semibold text-base leading-6 border-0 rounded-[10px] px-[22px] py-[14px] cursor-pointer no-underline shadow-[0_4px_2px_rgba(255,122,69,0.02),0_13px_5px_rgba(255,122,69,0.04),0_30px_12px_rgba(255,122,69,0.05),0_100px_40px_rgba(255,122,69,0.07)] transition-colors duration-150 hover:bg-accent-dark active:scale-[0.97]">Partner with us →</a>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex flex-col items-center text-center" id="contact">
+    <div class="max-w-[640px] flex flex-col items-center gap-6">
+      <div class="reveal inline-flex items-center gap-2 bg-white border border-bg rounded-full px-3 py-2">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_4px_rgba(255,122,69,0.18)]"></span>
+        </span>
+        <span class="font-display font-bold text-sm text-accent-dark whitespace-nowrap">FREQUENTLY ASKED</span>
+      </div>
+      <h2 class="reveal font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-ink" style="transition-delay: 0.08s">Questions, answered</h2>
+    </div>
+
+    <div class="reveal w-full max-w-[1200px] mt-12 dt:mt-16 flex flex-col gap-4 text-left" style="transition-delay: 0.16s">
+      <div class="faq-item is-open group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
+          <span>Is CampusBite free?</span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Yes. Tracking, menus, and logging are free. Plus adds photo logging, AI meal planning, and long-term trends.</p>
+        </div>
+      </div>
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
+          <span>Is my campus supported?</span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">CampusBite is live at 300+ schools across the USA and Canada and expanding every semester. Search your school in the app to check, or reach out and we'll help bring it to your dining halls.</p>
+        </div>
+      </div>
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
+          <span>Does it work with my diet?</span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Yes. Set your dietary needs, allergies, and restrictions once, and every dining hall menu is filtered to match — vegan, gluten-free, halal, and more.</p>
+        </div>
+      </div>
+      <div class="faq-item group bg-white border border-bg rounded-[20px] overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between gap-6 px-10 py-8 bg-transparent border-0 cursor-pointer text-left font-display font-black text-xl text-ink" type="button">
+          <span>Is my information private?</span>
+          <span class="faq-icon relative w-6 h-6 shrink-0">
+            <span class="absolute w-4 h-0.5 bg-accent rounded-sm top-[11px] left-1"></span>
+            <span class="absolute w-0.5 h-4 bg-accent rounded-sm top-1 left-[11px] transition-transform duration-200 group-[.is-open]:scale-y-0"></span>
+          </span>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out px-10 group-[.is-open]:max-h-[300px] group-[.is-open]:pb-8">
+          <p class="font-sans font-normal text-base leading-[1.6] text-muted">Your data is yours. We never sell personal information, and any insights shared with dining services are fully anonymized.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 dt:py-24 px-6 flex justify-center">
+    <div class="reveal w-full max-w-[1200px] bg-[linear-gradient(135deg,#1c5c47_0%,#16443a_100%)] rounded-[32px] px-6 py-20 flex flex-col items-center text-center gap-6">
+      <h2 class="font-display font-black text-[36px] dt:text-[48px] leading-[1.1] text-white">Start eating smarter today</h2>
+      <p class="font-sans font-normal text-xl text-white/85">Free on iOS and Android. Your dining hall, decoded</p>
+      <div class="flex items-center gap-3 xs:gap-4 mt-2 w-full xs:w-auto">
+        <a href="#" class="inline-flex flex-1 xs:flex-none h-11 w-full max-w-[180px] xs:w-[180px] xs:h-[52px] no-underline" aria-label="Download on the App Store">
+          <img src="App Store.svg" alt="Download on the App Store" class="w-full h-full block" />
+        </a>
+        <a href="#" class="inline-flex flex-1 xs:flex-none h-11 w-full max-w-[180px] xs:w-[180px] xs:h-[52px] no-underline" aria-label="Get it on Google Play">
+          <img src="Google Play.svg" alt="Get it on Google Play" class="w-full h-full block" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-primary px-6 pt-16 pb-8">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="flex flex-col dt:flex-row justify-between gap-10 dt:gap-12">
+        <div class="flex flex-col gap-4 max-w-none dt:max-w-[340px]">
+          <div class="flex items-center gap-2 w-auto">
+            <div class="flex items-center justify-center shrink-0">
+              <img src="logo.svg" alt="CampusBite logo" class="w-[34px] h-[22.7px] block brightness-0 invert" />
+            </div>
+            <span class="font-display font-bold text-[15.13px] text-white">CampusBite</span>
+          </div>
+          <p class="font-sans font-normal text-[15px] leading-[1.5] text-white/65">Smart eating for campus life. Personalized meal tracking from your real dining-hall menus.</p>
+        </div>
+        <div class="flex gap-10 dt:gap-20 flex-wrap">
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Product</h4>
+            <a href="how-it-works.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">How it works</a>
+            <a href="for-campuses.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">For campuses</a>
+            <a href="download.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Download</a>
+            <a href="affiliate.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Become an affiliate</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Company</h4>
+            <a href="#top" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Home</a>
+            <a href="about.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">About</a>
+            <a href="contact.html" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Contact</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4 class="font-display font-bold text-sm tracking-[0.02em] text-white uppercase">Legal</h4>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Terms &amp; Conditions</a>
+            <a href="#" class="font-sans font-normal text-[15px] text-white/65 no-underline transition-colors duration-150 hover:text-white">Privacy &amp; Policy</a>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-12 mb-6 border-0 border-t border-white/15" />
+      <div class="flex flex-col dt:flex-row items-start dt:items-center flex-wrap gap-4 font-sans font-normal text-sm text-white/55">
+        <span>© 2026 CampusBite · Powered by Ocean Development</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      if (!items.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      items.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (!menuToggle || !mobileMenu) return;
+
+      function closeMenu() {
+        menuToggle.classList.remove('is-open');
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menuToggle.classList.add('is-open');
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        menuToggle.setAttribute('aria-expanded', 'true');
+      }
+
+      menuToggle.addEventListener('click', function () {
+        if (menuToggle.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 960) closeMenu();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function (item) {
+        var button = item.querySelector('.faq-question');
+        button.addEventListener('click', function () {
+          var wasOpen = item.classList.contains('is-open');
+          faqItems.forEach(function (i) { i.classList.remove('is-open'); });
+          if (!wasOpen) item.classList.add('is-open');
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var scrollWrap = document.querySelector('.action-scroll');
+      var triggers = document.querySelectorAll('.action-trigger');
+      if (!scrollWrap || !triggers.length) return;
+
+      var stepCount = triggers.length;
+
+      function layout() {
+        scrollWrap.style.height = (stepCount * 100) + 'vh';
+        triggers.forEach(function (t, i) {
+          t.style.top = (i * 100) + 'vh';
+          t.style.height = '100vh';
+        });
+      }
+      layout();
+      window.addEventListener('resize', layout);
+
+      var phoneImgs = document.querySelectorAll('.action-phone-img');
+      var stepBlocks = document.querySelectorAll('.action-step-block');
+      var currentStep = null;
+
+      function setStep(step) {
+        if (step === currentStep) return;
+        currentStep = step;
+        phoneImgs.forEach(function (img) { img.classList.toggle('is-active', img.dataset.step === step); });
+        stepBlocks.forEach(function (block) { block.classList.toggle('is-active', block.dataset.step === step); });
+      }
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var viewportCenter = window.scrollY + window.innerHeight / 2;
+        var closest = null;
+        var closestDist = Infinity;
+        triggers.forEach(function (t) {
+          var rect = t.getBoundingClientRect();
+          var triggerCenter = rect.top + window.scrollY + rect.height / 2;
+          var dist = Math.abs(triggerCenter - viewportCenter);
+          if (dist < closestDist) { closestDist = dist; closest = t; }
+        });
+        if (closest) setStep(closest.dataset.step);
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
