@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="stylesheet" href="css/tailwind.css"></head><body>
 <title>CampusBite Scroll Hero</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,10 +97,6 @@ h1 span { color: var(--orange); }
 .cD strong { display: block; font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -.02em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
 .cD span { display: block; margin-top: 5px; font-size: 13px; color: var(--stone); }
 
-.controls { position: absolute; z-index: 20; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 12px; padding: 6px 6px 6px 16px; border-radius: 24px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 500; box-shadow: 0 8px 24px rgba(30,28,26,.25); }
-.controls output { font-variant-numeric: tabular-nums; min-width: 4.5ch; opacity: .85; }
-.controls button { height: 36px; padding: 0 18px; border: 0; border-radius: 18px; background: var(--orange); color: #fff; font-weight: 600; font-size: 13px; }
-
 /* ---------- metrics, features, footer ---------- */
 .metrics { background: var(--cream); padding-block: 72px; }
 .metrics .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; text-align: center; }
@@ -147,7 +143,6 @@ h1 span { color: var(--orange); }
   .metrics .wrap { grid-template-columns: 1fr; }
   .cols { grid-template-columns: 1fr; gap: 28px; }
   .store { width: 150px; height: 43px; }
-  .controls { padding-left: 12px; gap: 8px; }
 }
 
 /* ---------- benefits: phone rises inside the panel as you scroll ---------- */
@@ -406,7 +401,6 @@ h1 span { color: var(--orange); }
     <div class="card cC" id="cardC"><div class="top"><span class="tile"><i></i></span><span class="label">Smart suggestion</span><span class="when">Just now</span></div><p id="sugTxt">Short 82g on protein. Try Greek yogurt at North Hall.</p></div>
     <div class="card cD" id="cardD"><svg viewBox="0 0 56 56" aria-hidden="true"><circle class="trk" cx="28" cy="28" r="22"/><circle class="val" id="ringD" cx="28" cy="28" r="22"/></svg><div><strong id="calD">1,250</strong><span>calories left</span></div></div>
 
-    <div class="controls"><output id="prog">0%</output><button type="button" id="play">Play</button></div>
   </div>
 </section>
 
@@ -520,7 +514,7 @@ h1 span { color: var(--orange); }
 (function () {
   var $ = function (s) { return document.querySelector(s); };
   var scene = $('#scene'), stage = $('#stage'), phone = $('#phone'), copy = $('#copy'), h2 = $('#h2'),
-      glow = $('#glow'), fade = $('#fade'), photo = $('#photo'), prog = $('#prog'), playBtn = $('#play');
+      glow = $('#glow'), fade = $('#fade'), photo = $('#photo');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var lerp = function (a, b, t) { return a + (b - a) * t; };
@@ -598,7 +592,6 @@ h1 span { color: var(--orange); }
     var o2 = outC(seg(p, .56, .84));
     h2.style.opacity = o2; h2.style.transform = 'translate3d(0,' + (24 * (1 - o2)) + 'px,0)';
     fade.style.opacity = 1;
-    prog.textContent = Math.round(p * 100) + '%';
   }
 
   function getP() {
@@ -614,25 +607,6 @@ h1 span { color: var(--orange); }
     requestAnimationFrame(loop);
   }
 
-  var playing = false, raf2 = 0;
-  function label() { playBtn.textContent = playing ? 'Pause' : (getP() > .97 ? 'Replay' : 'Play'); }
-  function stopPlay() { playing = false; cancelAnimationFrame(raf2); label(); }
-  function startPlay() {
-    var total = scene.offsetHeight - stage.clientHeight;
-    var base = scene.getBoundingClientRect().top + window.scrollY, end = base + total, from = window.scrollY;
-    if (getP() > .97 || from < base) { from = base; window.scrollTo(0, base); }
-    var dur = reduce ? 1 : 5400, t0 = performance.now();
-    playing = true; label();
-    (function step(now) {
-      if (!playing) return;
-      var q = clamp((now - t0) / dur, 0, 1);
-      window.scrollTo(0, lerp(from, end, inOut(q)));
-      if (q < 1) raf2 = requestAnimationFrame(step); else stopPlay();
-    })(t0);
-  }
-  playBtn.addEventListener('click', function () { playing ? stopPlay() : startPlay(); });
-  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, function () { if (playing) stopPlay(); }, { passive: true }); });
-  window.addEventListener('scroll', function () { if (!playing) label(); }, { passive: true });
   window.addEventListener('resize', measure);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   measure(); requestAnimationFrame(loop);
